@@ -2,6 +2,8 @@
 
 # G.O.O.D. 4228 - POWERPLAY
 
+If you think we use Android Studio, we don't. [Thanks Juice 16236, you guys are lifesavers](https://marketplace.visualstudio.com/items?itemName=Juice16236.ftc-for-vs-code)
+
 ## Access Java code
 
 [![Directory](https://user-images.githubusercontent.com/62531512/155822554-a1c3ec57-1f3f-440c-8295-465e8f28b4b6.png)](https://github.com/Lyman-Robotics/FTC-4228-Powerplay)
@@ -9,3 +11,18 @@
 ## Team code key
 
 [Nothing](https://github.com/Lyman-Robotics/FTC-4228-Powerplay) - Nothing yet <br>
+
+## Notes
+
+These are personal notes for our team or anyone wishing to duplicate our VSCode journey
+
+1. Add "org.gradle.jvmargs=-Xmx4608m" to the _root_/gradle.properties
+2. Ensure all licenses are accepted & paths are set up properly
+3. Root directory upon an error is the total packagae, not bin folder
+4. View https://developer.android.com/studio/command-line/sdkmanager.html when installing binary SDK package
+
+System paths:
+
+![s](https://cdn.discordapp.com/attachments/894669724305215509/1013255099008696320/unknown.png?size=4096)
+
+![s](https://cdn.discordapp.com/attachments/894669724305215509/1013255204092776528/unknown.png?size=4096)
