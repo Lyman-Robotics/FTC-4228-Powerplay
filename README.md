@@ -6,11 +6,11 @@ If you think we use Android Studio, we don't. [Thanks Juice 16236, you guys are 
 
 ## Access Java code
 
-[![Directory](https://user-images.githubusercontent.com/62531512/155822554-a1c3ec57-1f3f-440c-8295-465e8f28b4b6.png)](https://github.com/Lyman-Robotics/FTC-4228-Powerplay)
+[![Directory](https://user-images.githubusercontent.com/62531512/155822554-a1c3ec57-1f3f-440c-8295-465e8f28b4b6.png)](https://github.com/Lyman-Robotics/FTC-4228-Powerplay/tree/main/TeamCode/src/main/java/org/firstinspires/ftc/teamcode)
 
 ## Team code key
 
-[Nothing](https://github.com/Lyman-Robotics/FTC-4228-Powerplay) - Nothing yet <br>
+[Nothing](https://github.com/Lyman-Robotics/FTC-4228-Powerplay/tree/main/TeamCode/src/main/java/org/firstinspires/ftc/teamcode) - Nothing yet <br>
 
 ## Notes
 
