@@ -2,8 +2,6 @@
 
 # G.O.O.D. 4228 - POWERPLAY
 
-If you think we use Android Studio, we don't. [Thanks Juice 16236, you guys are lifesavers](https://marketplace.visualstudio.com/items?itemName=Juice16236.ftc-for-vs-code)
-
 ## Access Java code
 
 [![Directory](https://user-images.githubusercontent.com/62531512/155822554-a1c3ec57-1f3f-440c-8295-465e8f28b4b6.png)](https://github.com/Lyman-Robotics/FTC-4228-Powerplay/tree/main/TeamCode/src/main/java/org/firstinspires/ftc/teamcode)
