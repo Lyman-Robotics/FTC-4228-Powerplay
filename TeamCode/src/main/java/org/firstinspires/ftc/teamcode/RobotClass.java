@@ -14,25 +14,30 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class RobotClass {
     private LinearOpMode myOpMode = null;
 
-    public DcMotor FLDrive = null;
-    public DcMotor FRDrive = null;
-    public DcMotor BLDrive = null;
-    public DcMotor BRDrive = null;
-    public CRServo ServoPlaceholder = null;// capstoneservo
-    HardwareMap hardwareMap = null;
+    // Motors
+    public DcMotor FLDrive;
+    public DcMotor FRDrive;
+    public DcMotor BLDrive;
+    public DcMotor BRDrive;
+
+    HardwareMap hwMap = null;
     public ElapsedTime timeElapsed = new ElapsedTime();
+
+    public RobotClass(HardwareMap hwMap) {
+        init(hwMap);
+    }
 
     /* Initialize standard Hardware interfaces */
     public void init(HardwareMap hwMap) {
         // Save reference to Hardware map
-        hardwareMap = hwMap;
+        hwMap = hwMap;
 
         // Define and initialize motors
-        FLDrive = hardwareMap.get(DcMotor.class, "FLDrive");
-        FRDrive = hardwareMap.get(DcMotor.class, "FRDrive");
-        BLDrive = hardwareMap.get(DcMotor.class, "BLDrive");
-        BRDrive = hardwareMap.get(DcMotor.class, "BRDrive");
-        // ? ServoPlaceholder = hardwareMap.get(CRServo.class, "ServoPlaceholder");
+        FLDrive = hwMap.get(DcMotor.class, "FLDrive");
+        FRDrive = hwMap.get(DcMotor.class, "FRDrive");
+        BLDrive = hwMap.get(DcMotor.class, "BLDrive");
+        BRDrive = hwMap.get(DcMotor.class, "BRDrive");
+        // ? ServoPlaceholder = hwMap.get(CRServo.class, "ServoPlaceholder");
 
         // Make robot drive straight
         FLDrive.setDirection(DcMotor.Direction.REVERSE);
