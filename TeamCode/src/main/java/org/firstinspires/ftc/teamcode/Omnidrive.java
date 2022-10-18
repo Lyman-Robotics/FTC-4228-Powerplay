@@ -57,8 +57,7 @@ public class Omnidrive extends LinearOpMode {
       robot.setDrivePower(FLPower, FRPower, BLPower, BRPower);
 
       // Show the elapsed game time and wheel power.
-      telemetry.addData("Status", "Run Time: " + robot.timeElapsed.toString());
-      telemetry.addData("Elapsed Time: ", robot.timeElapsed);
+      telemetry.addData("Elapsed Time: ", robot.timeElapsed.toString());
       telemetry.addData("Front left/Right", "%4.2f, %4.2f", FLPower, FRPower);
       telemetry.addData("Back  left/Right", "%4.2f, %4.2f", BLPower, BRPower);
       telemetry.update();
