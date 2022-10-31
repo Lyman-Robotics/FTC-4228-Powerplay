@@ -33,7 +33,7 @@ public class Omnidrive extends LinearOpMode {
       vertical = gamepad1.left_stick_y;
       horizontal = -gamepad1.left_stick_x;
       pivot = -gamepad1.right_stick_x;
-      speedScalar = 0.5;
+      speedScalar = 0.25;
 
       double FRPower = ((-pivot + (vertical - horizontal)) * speedScalar);
       double BRPower = ((-pivot + vertical + horizontal) * speedScalar);

@@ -40,7 +40,7 @@ public class RobotClass {
         // ? ServoPlaceholder = hwMap.get(CRServo.class, "ServoPlaceholder");
 
         // Make robot drive straight
-        FLDrive.setDirection(DcMotor.Direction.REVERSE);
+        BRDrive.setDirection(DcMotor.Direction.REVERSE);
         BLDrive.setDirection(DcMotor.Direction.REVERSE);
 
         FLDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
