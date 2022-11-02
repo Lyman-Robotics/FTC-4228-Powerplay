@@ -56,6 +56,30 @@ public class Omnidrive extends LinearOpMode {
       // Send calculated power to wheels
       robot.setDrivePower(FLPower, FRPower, BLPower, BRPower);
 
+      // Servo on gamepad
+      if (gamepad1.x) {
+        robot.ClawServo.setPower(0.5);
+      } else {
+        robot.ClawServo.setPower(0);
+      }
+      if (gamepad1.y) {
+        robot.ClawServo.setPower(-0.5);
+      } else {
+        robot.ClawServo.setPower(0);
+      }
+
+      // Slide on gamepad
+      if (gamepad1.a) {
+        robot.SlideMotor.setPower(1);
+      } else {
+        robot.SlideMotor.setPower(0);
+      }
+      if (gamepad1.b) {
+        robot.SlideMotor.setPower(-1);
+      } else {
+        robot.SlideMotor.setPower(0);
+      }
+
       // Show the elapsed game time and wheel power.
       telemetry.addData("Elapsed Time: ", robot.timeElapsed.toString());
       telemetry.addData("Front left/Right", "%4.2f, %4.2f", FLPower, FRPower);

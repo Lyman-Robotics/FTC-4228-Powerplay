@@ -19,6 +19,8 @@ public class RobotClass {
     public DcMotor FRDrive;
     public DcMotor BLDrive;
     public DcMotor BRDrive;
+    public DcMotor SlideMotor;
+    public CRServo ClawServo;
 
     HardwareMap hwMap = null;
     public ElapsedTime timeElapsed = new ElapsedTime();
@@ -37,6 +39,8 @@ public class RobotClass {
         FRDrive = hwMap.get(DcMotor.class, "FRDrive");
         BLDrive = hwMap.get(DcMotor.class, "BLDrive");
         BRDrive = hwMap.get(DcMotor.class, "BRDrive");
+        SlideMotor = hwMap.get(DcMotor.class, "SlideMotor");
+        ClawServo = hwMap.get(CRServo.class, "ClawServo");
         // ? ServoPlaceholder = hwMap.get(CRServo.class, "ServoPlaceholder");
 
         // Make robot drive straight
