@@ -2,13 +2,13 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name = "Omnirive", group = "Driver Controlled")
-public class Omnidrive extends LinearOpMode {
+@Autonomous(name="tedt", group="tedt")
+public class AutoForward extends LinearOpMode {
   @Override
   public void runOpMode() {
     // Initialize the hardware variables.
@@ -20,7 +20,7 @@ public class Omnidrive extends LinearOpMode {
     waitForStart();
     robot.timeElapsed.reset();
 
-    robot.ClawServo.setPosition(0.68);
+    robot.ClawServo.setPosition(0.4);
 
     // Initialize drive variables
     float vertical;
@@ -43,7 +43,7 @@ public class Omnidrive extends LinearOpMode {
       } else if (gamepad1.left_bumper) {
         slowMode = false;
       }
-      speedScalar = slowMode ? 0.2 : 0.65;
+      speedScalar = slowMode ? 0.15 : 0.65;
 
       double FRPower = ((-pivot + (vertical - horizontal)) * speedScalar);
       double BRPower = ((-pivot + vertical + horizontal) * speedScalar);
@@ -64,31 +64,12 @@ public class Omnidrive extends LinearOpMode {
       // ? Nerd stuff ends here
 
       // Send calculated power to wheels
-      robot.setDrivePower(FLPower, FRPower, BLPower, BRPower);
+      // robot.setDrivePower(FLPower, FRPower, BLPower, BRPower);
 
-      // Servo on gamepad
-      if (gamepad2.x) {
-        clawClosed = false;
-      } else if (gamepad2.y) {
-        clawClosed = true;
-      }
-      robot.ClawServo.setPosition(clawClosed ? 0.4 : 0.75);
-      // Slide on gamepad
-      if (gamepad2.a) {
-        robot.SlideMotor.setPower(1);
-      } else if (gamepad2.b) {
-        robot.SlideMotor.setPower(-1);
-      } else {
-        robot.SlideMotor.setPower(0);
-      }
-
-      // Show the elapsed game time and wheel power.
-      telemetry.addData("Thing", robot.ClawServo.getPosition());
-      telemetry.addData("Slow Mode", slowMode);
-      telemetry.addData("Elapsed Time: ", robot.timeElapsed.toString());
-      telemetry.addData("Front left/Right", "%4.2f, %4.2f", FLPower, FRPower);
-      telemetry.addData("Back  left/Right", "%4.2f, %4.2f", BLPower, BRPower);
-      telemetry.update();
+      robot.setDrivePower(-.5,-.5,-.5,-.5);
+      sleep(1500);
+      robot.setDrivePower(0,0,0,0);
+      sleep(9999999);
     }
   }
 }

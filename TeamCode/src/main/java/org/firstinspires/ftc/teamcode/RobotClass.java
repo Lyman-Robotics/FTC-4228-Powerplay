@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -20,7 +20,7 @@ public class RobotClass {
     public DcMotor BLDrive;
     public DcMotor BRDrive;
     public DcMotor SlideMotor;
-    public CRServo ClawServo;
+    public Servo ClawServo;
 
     HardwareMap hwMap = null;
     public ElapsedTime timeElapsed = new ElapsedTime();
@@ -40,17 +40,19 @@ public class RobotClass {
         BLDrive = hwMap.get(DcMotor.class, "BLDrive");
         BRDrive = hwMap.get(DcMotor.class, "BRDrive");
         SlideMotor = hwMap.get(DcMotor.class, "SlideMotor");
-        ClawServo = hwMap.get(CRServo.class, "ClawServo");
-        // ? ServoPlaceholder = hwMap.get(CRServo.class, "ServoPlaceholder");
+        ClawServo = hwMap.get(Servo.class, "ClawServo");
+        // ? ServoPlaceholder = hwMap.get(Servo.class, "ServoPlaceholder");
 
         // Make robot drive straight
         BRDrive.setDirection(DcMotor.Direction.REVERSE);
         BLDrive.setDirection(DcMotor.Direction.REVERSE);
+        ClawServo.setDirection(Servo.Direction.REVERSE);
 
         FLDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         FRDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BLDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         BRDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        SlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         FLDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         FRDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
