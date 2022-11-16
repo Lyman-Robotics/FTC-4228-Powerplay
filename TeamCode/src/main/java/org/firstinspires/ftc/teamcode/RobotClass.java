@@ -2,9 +2,11 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
@@ -21,6 +23,7 @@ public class RobotClass {
     public DcMotor BRDrive;
     public DcMotor SlideMotor;
     public Servo ClawServo;
+    public DigitalChannel SlideTouchSensor;
 
     HardwareMap hwMap = null;
     public ElapsedTime timeElapsed = new ElapsedTime();
@@ -41,7 +44,10 @@ public class RobotClass {
         BRDrive = hwMap.get(DcMotor.class, "BRDrive");
         SlideMotor = hwMap.get(DcMotor.class, "SlideMotor");
         ClawServo = hwMap.get(Servo.class, "ClawServo");
+        SlideTouchSensor = hwMap.get(DigitalChannel.class, "SlideTouchSensor");
         // ? ServoPlaceholder = hwMap.get(Servo.class, "ServoPlaceholder");
+
+        SlideTouchSensor.setMode(DigitalChannel.Mode.INPUT);
 
         // Make robot drive straight
         BRDrive.setDirection(DcMotor.Direction.REVERSE);
