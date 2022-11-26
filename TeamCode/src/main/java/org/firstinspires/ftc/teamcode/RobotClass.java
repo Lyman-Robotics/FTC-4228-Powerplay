@@ -105,4 +105,15 @@ public class RobotClass {
         BRDrive.setPower(BR);
     }
 
+    public void omnidrive(double power, double angle, double rotation) { // in radians
+        double FL = power * Math.sin(angle + Math.PI / 4) + rotation;
+        double FR = power * Math.cos(angle + Math.PI / 4) - rotation;
+        double BL = power * Math.cos(angle + Math.PI / 4) + rotation;
+        double BR = power * Math.sin(angle + Math.PI / 4) - rotation;
+
+        FLDrive.setPower(FL);
+        FRDrive.setPower(FR);
+        BLDrive.setPower(BL);
+        BRDrive.setPower(BR);
+    }
 }

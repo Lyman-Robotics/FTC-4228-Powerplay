@@ -7,8 +7,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Forward & Back", group = "Autonomous")
-public class AutoForward extends LinearOpMode {
+@Autonomous(name = "Autonomous Dev", group = "Autonomous Dev")
+public class AutonomousDev extends LinearOpMode {
   @Override
   public void runOpMode() {
     // Initialize the hardware variables.
@@ -31,43 +31,25 @@ public class AutoForward extends LinearOpMode {
 
     // ! Runs until the end of the match after play is pressed
     while (opModeIsActive()) {
-      robot.ClawServo.setPosition(0.355);
-      realSleep(1500, "Servo closed", robot);
-      robot.SlideMotor.setPower(1);
-      realSleep(2000, "Slide motor up", robot);
-      robot.SlideMotor.setPower(0);
-      realSleep(200, "Slide motor stopped", robot);
+      if (gamepad1.a) {
+        ElapsedTime timeElapsedNew = new ElapsedTime();
+        telemetry.addData("Time", timeElapsedNew);
+      }
 
-      robot.setDrivePower(0.25, 0.25, 0.25, 0.25);
-      realSleep(2500, "Forward", robot);
-      robot.setDrivePower(0, 0, 0, 0);
-      realSleep(500, "Stopped", robot);
-      // robot.setDrivePower(-0.25, -0.25, -0.25, -0.25);
-      // realSleep(2200, "Backward", robot);
-
-      robot.setDrivePower(0, 0, 0, 0);
-      realSleep(200, "stop", robot);
-      robot.setDrivePower(-0.25, -0.25, -0.25, -0.25);
-      realSleep(500, "Backward", robot);
-      robot.SlideMotor.setPower(-1);
-      realSleep(1000, "Lower slide", robot);
-      robot.SlideMotor.setPower(0);
-
-      // robot.SlideMotor.setPower(1);
-      // realSleep(6000, "Slide motor up", robot);
-      // robot.SlideMotor.setPower(0);
-      // realSleep(200, "Slide motor stopped", robot);
-
-      // robot.omnidrive(0.5, (Math.PI / 2), 0);
-      // realSleep(2000, "Forward", robot);
-      // robot.setDrivePower(0, 0, 0, 0);
-      // realSleep(200, "Thing", robot);
-      // robot.omnidrive(0.5, (Math.PI / 2), 0);
-      // realSleep(200, "tgk", robot);
-      // robot.omnidrive(0.5, (Math.PI / 2), 0);
-
-      realSleep(9999999, "Done", robot);
+      if (gamepad1.left_stick_y > 0) {
+        robot.setDrivePower(0.25, 0.25, 0.25, 0.25);
+      } else if (gamepad1.left_stick_y < 0) {
+        robot.setDrivePower(-0.25, -0.25, -0.25, -0.25);
+      } else if (gamepad1.left_stick_x > 0) {
+        robot.omnidrive(0.25, (Math.PI / 2), 0);
+      } else if (gamepad1.left_stick_x < 0) {
+        robot.omnidrive(-0.25, (Math.PI / 2), 0);
+      } else {
+        robot.setDrivePower(0, 0, 0, 0);
+      }
     }
+
+    realSleep(9999999, "Done", robot);
   }
 
   public void realSleep(int n, String customAdd, RobotClass robot) {

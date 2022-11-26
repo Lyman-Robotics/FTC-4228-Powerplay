@@ -28,7 +28,7 @@ public class Omnidrive extends LinearOpMode {
     boolean slowMode = false;
     boolean clawClosed = false;
 
-    robot.ClawServo.setPosition(0.7494); // init position of servo
+    // robot.ClawServo.setPosition(0.7494); // init position of servo
 
     // ! Runs until the end of the match after play is pressed
     while (opModeIsActive()) {
@@ -43,7 +43,7 @@ public class Omnidrive extends LinearOpMode {
       } else if (gamepad1.left_bumper) {
         slowMode = false;
       }
-      speedScalar = slowMode ? 0.2 : 0.65;
+      speedScalar = slowMode ? 0.2 : 0.5; // used to be .65 for fast
 
       double FRPower = ((-pivot + (vertical - horizontal)) * speedScalar);
       double BRPower = ((-pivot + vertical + horizontal) * speedScalar);
@@ -66,7 +66,7 @@ public class Omnidrive extends LinearOpMode {
       // Send calculated power to wheels
       robot.setDrivePower(FLPower, FRPower, BLPower, BRPower);
 
-      // operational mode servo
+      // ? Actual Servo
       if (gamepad2.x) {
         clawClosed = false;
       } else if (gamepad2.y) {
@@ -74,9 +74,10 @@ public class Omnidrive extends LinearOpMode {
       }
       robot.ClawServo.setPosition(clawClosed ? 0.355 : 0.7494);
 
-      // if (gamepad1.x) { // ? This is for testing purposes
+      // // ? This is for testing purposes
+      // if (gamepad2.x) {
       // robot.ClawServo.setPosition(robot.ClawServo.getPosition() + 0.001);
-      // } else if (gamepad1.y) {
+      // } else if (gamepad2.y) {
       // robot.ClawServo.setPosition(robot.ClawServo.getPosition() - 0.001);
       // }
 
