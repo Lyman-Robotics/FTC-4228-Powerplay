@@ -144,10 +144,5 @@ public class AutoForward extends LinearOpMode {
     telemetry.update();
 
     sleep(n);
-
-    // telemetry.addData("Front left/Right", "%4.2f, %4.2f", robot.FLPower,
-    // robot.FRPower);
-    // telemetry.addData("Back left/Right", "%4.2f, %4.2f", robot.BLPower,
-    // robot.BRPower);
   }
 }
