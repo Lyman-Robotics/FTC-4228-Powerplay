@@ -141,6 +141,7 @@ public class AutoForward extends LinearOpMode {
     telemetry.addData("Claw Servo Position", robot.ClawServo.getPosition());
     telemetry.addData("Slide Touch Sensor", !(robot.SlideTouchSensor.getState()));
     telemetry.addData("Elapsed Time", robot.timeElapsed.toString());
+    telemetry.update();
 
     sleep(n);
 
@@ -148,7 +149,5 @@ public class AutoForward extends LinearOpMode {
     // robot.FRPower);
     // telemetry.addData("Back left/Right", "%4.2f, %4.2f", robot.BLPower,
     // robot.BRPower);
-    telemetry.update();
   }
-
 }
