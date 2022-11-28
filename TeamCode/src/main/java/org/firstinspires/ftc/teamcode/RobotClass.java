@@ -30,17 +30,10 @@ public class RobotClass {
   public Servo ClawServo;
   public DigitalChannel SlideTouchSensor;
 
-  public SleeveDetection sleeveDetection;
   public OpenCvCamera camera;
   public String webcamName = "Webcam 1";
-
-  public enum ParkingPosition {
-    LEFT,
-    CENTER,
-    RIGHT
-  }
-
-  public ParkingPosition position;
+  public String position;
+  public SleeveDetection sleeveDetection;
 
   HardwareMap hwMap = null;
   public ElapsedTime timeElapsed = new ElapsedTime();

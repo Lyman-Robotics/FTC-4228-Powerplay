@@ -83,7 +83,7 @@ public class Omnidrive extends LinearOpMode {
       if (gamepad2.a) {
         robot.SlideMotor.setPower(1);
       } else if (gamepad2.b && robot.SlideTouchSensor.getState()) {
-        robot.SlideMotor.setPower(-1);
+        robot.SlideMotor.setPower(-0.5);
       } else {
         robot.SlideMotor.setPower(0);
       }

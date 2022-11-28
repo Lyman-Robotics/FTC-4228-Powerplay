@@ -1,3 +1,5 @@
+package org.firstinspires.ftc.teamcode;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Point;
@@ -14,11 +16,11 @@ public class SleeveDetection extends OpenCvPipeline {
      * MAGENTA = Parking Right
      */
 
-    public enum ParkingPosition {
-        LEFT,
-        CENTER,
-        RIGHT
-    }
+    // public enum ParkingPosition {
+    // LEFT,
+    // CENTER,
+    // RIGHT
+    // }
 
     // TOPLEFT anchor point for the bounding box
     private static Point SLEEVE_TOPLEFT_ANCHOR_POINT = new Point(145, 168);
@@ -41,7 +43,7 @@ public class SleeveDetection extends OpenCvPipeline {
             SLEEVE_TOPLEFT_ANCHOR_POINT.y + REGION_HEIGHT);
 
     // Running variable storing the parking position
-    private volatile ParkingPosition position = ParkingPosition.LEFT;
+    private String position = "Left";
 
     @Override
     public Mat processFrame(Mat input) {
@@ -54,7 +56,7 @@ public class SleeveDetection extends OpenCvPipeline {
 
         // Change the bounding box color based on the sleeve color
         if (sumColors.val[0] == minColor) {
-            position = ParkingPosition.CENTER;
+            position = "Center";
             Imgproc.rectangle(
                     input,
                     sleeve_pointA,
@@ -62,7 +64,7 @@ public class SleeveDetection extends OpenCvPipeline {
                     CYAN,
                     2);
         } else if (sumColors.val[1] == minColor) {
-            position = ParkingPosition.RIGHT;
+            position = "Right";
             Imgproc.rectangle(
                     input,
                     sleeve_pointA,
@@ -70,7 +72,7 @@ public class SleeveDetection extends OpenCvPipeline {
                     MAGENTA,
                     2);
         } else {
-            position = ParkingPosition.LEFT;
+            position = "Left";
             Imgproc.rectangle(
                     input,
                     sleeve_pointA,
@@ -85,7 +87,7 @@ public class SleeveDetection extends OpenCvPipeline {
     }
 
     // Returns an enum being the current position where the robot will park
-    public ParkingPosition getPosition() {
+    public String getPosition() {
         return position;
     }
 }

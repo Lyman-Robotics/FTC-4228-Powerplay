@@ -15,7 +15,7 @@ import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
 @Autonomous(name = "Red Left", group = "Autonomous")
-@Disabled
+// @Disabled
 public class RedLeft extends LinearOpMode {
   @Override
   public void runOpMode() {
@@ -55,7 +55,7 @@ public class RedLeft extends LinearOpMode {
       robot.setDrivePower(0.25, 0.25, 0.25, 0.25);
       realSleep(2000, "Forward", robot);
 
-      robot.omnidrive(.5, math.PI / 2, 0);
+      robot.omnidrive(.5, Math.PI / 2, 0);
       realSleep(500, "omni-driving to the right", robot);
 
       robot.setDrivePower(0.2, 0.2, 0.2, 0.2); // get junction inside of v thing\
@@ -75,23 +75,23 @@ public class RedLeft extends LinearOpMode {
 
       // here, robot should be just in front of the high junction and ready 2 park
       // ALREADY BACKED UP!
-      if (position == ParkingPosition.LEFT) {
+      if (robot.position.equals("Left")) {
         // drive to left (position one)
-        robot.omnidrive(.2, (math.PI / 2) * -1, 0);
+        robot.omnidrive(.2, (Math.PI / 2) * -1, 0);
         realSleep(1000, "omni to location one", robot);
         robot.setDrivePower(0, 0, 0, 0);
         realSleep(100, "parked in location one", robot);
 
-      } else if (position == ParkingPosition.RIGHT) {
+      } else if (robot.position.equals("Right")) {
         // drive to right (position three)
-        robot.omnidrive(.2, (math.PI / 2), 0);
+        robot.omnidrive(.2, (Math.PI / 2), 0);
         realSleep(350, "omni to location three", robot);
         robot.setDrivePower(0, 0, 0, 0);
         realSleep(100, "parked in location three", robot);
 
       } else {
         // drive to center (position two)
-        robot.omnidrive(.2, (math.PI / 2) * -1, 0);
+        robot.omnidrive(.2, (Math.PI / 2) * -1, 0);
         realSleep(350, "omni to location two", robot);
         robot.setDrivePower(0, 0, 0, 0);
         realSleep(100, "parked in location one", robot);
