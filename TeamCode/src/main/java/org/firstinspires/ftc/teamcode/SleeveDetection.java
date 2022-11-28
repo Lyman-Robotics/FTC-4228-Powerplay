@@ -9,9 +9,9 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 public class SleeveDetection extends OpenCvPipeline {
     /*
-    YELLOW  = Parking Left
-    CYAN    = Parking Middle
-    MAGENTA = Parking Right
+     * YELLOW = Parking Left
+     * CYAN = Parking Middle
+     * MAGENTA = Parking Right
      */
 
     public enum ParkingPosition {
@@ -28,9 +28,8 @@ public class SleeveDetection extends OpenCvPipeline {
     public static int REGION_HEIGHT = 50;
 
     // Color definitions
-    private final Scalar
-            YELLOW  = new Scalar(255, 255, 0),
-            CYAN    = new Scalar(0, 255, 255),
+    private final Scalar YELLOW = new Scalar(255, 255, 0),
+            CYAN = new Scalar(0, 255, 255),
             MAGENTA = new Scalar(255, 0, 255);
 
     // Anchor point definitions
@@ -61,8 +60,7 @@ public class SleeveDetection extends OpenCvPipeline {
                     sleeve_pointA,
                     sleeve_pointB,
                     CYAN,
-                    2
-            );
+                    2);
         } else if (sumColors.val[1] == minColor) {
             position = ParkingPosition.RIGHT;
             Imgproc.rectangle(
@@ -70,8 +68,7 @@ public class SleeveDetection extends OpenCvPipeline {
                     sleeve_pointA,
                     sleeve_pointB,
                     MAGENTA,
-                    2
-            );
+                    2);
         } else {
             position = ParkingPosition.LEFT;
             Imgproc.rectangle(
@@ -79,10 +76,9 @@ public class SleeveDetection extends OpenCvPipeline {
                     sleeve_pointA,
                     sleeve_pointB,
                     YELLOW,
-                    2
-            );
+                    2);
         }
-        
+
         // Release and return input
         areaMat.release();
         return input;

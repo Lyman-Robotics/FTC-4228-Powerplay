@@ -40,7 +40,6 @@ public class VisionTest extends LinearOpMode {
             telemetry.addData("ROTATION: ", sleeveDetection.getPosition());
             telemetry.update();
         }
-
         // sleevedetection get position variable
 
         waitForStart();

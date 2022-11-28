@@ -14,63 +14,34 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "Blue Left Side", group = "Autonomous")
-public class AutoForward extends LinearOpMode {
-  // you can move all this to hwMap but im lazy and dont feel like doing that
-  SleeveDetection sleeveDetection;
-  OpenCvCamera camera;
-  String webcamName = "Webcam 1";
-
+@Autonomous(name = "Blue Left", group = "Autonomous")
+public class BlueLeft extends LinearOpMode {
   @Override
   public void runOpMode() {
     // Initialize the hardware variables.
-    RobotClass robot = new RobotClass(hardwareMap);
+    RobotClass robot = new RobotClass(hardwareMap, true);
 
     // ! Runs upon initialization
     telemetry.addData("Status", "Initialized");
     telemetry.update();
-    waitForStart();
-    robot.timeElapsed.reset();
 
     robot.BRDrive.setDirection(DcMotor.Direction.FORWARD);
     robot.FLDrive.setDirection(DcMotor.Direction.REVERSE);
     robot.FRDrive.setDirection(DcMotor.Direction.REVERSE);
     robot.BLDrive.setDirection(DcMotor.Direction.FORWARD);
 
-    robot.ClawServo.setPosition(0.7494); // Init position of servo
-
-    // opencv stuffs
-    int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
-        hardwareMap.appContext.getPackageName());
-    camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, webcamName),
-        cameraMonitorViewId);
-    sleeveDetection = new SleeveDetection();
-    camera.setPipeline(sleeveDetection);
-
-    camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
-      @Override
-      public void onOpened() {
-        camera.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_LEFT);
-      }
-
-      @Override
-      public void onError(int errorCode) {
-      }
-    });
-
-    ParkingPosition position = sleeveDetection.getPosition();
-
+    // TODO Open CV
     while (!isStarted()) {
-      telemetry.addData("ROTATION: ", sleeveDetection.getPosition());
+      telemetry.addData("Position", robot.sleeveDetection.getPosition());
       telemetry.update();
-      position = sleeveDetection.getPosition();
-
+      robot.position = robot.sleeveDetection.getPosition();
     }
-    // Initialize drive variables
 
     // ! Runs until the end of the match after play is pressed
-    while (opModeIsActive()) {
+    waitForStart();
+    robot.timeElapsed.reset();
 
+    while (opModeIsActive()) {
       // place cone on high junction before parking
       robot.ClawServo.setPosition(0.355);
       realSleep(200, "Servo closed", robot);

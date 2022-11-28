@@ -12,13 +12,11 @@ public class Omnidrive extends LinearOpMode {
   @Override
   public void runOpMode() {
     // Initialize the hardware variables.
-    RobotClass robot = new RobotClass(hardwareMap);
+    RobotClass robot = new RobotClass(hardwareMap, false);
 
     // ! Runs upon initialization
     telemetry.addData("Status", "Initialized");
     telemetry.update();
-    waitForStart();
-    robot.timeElapsed.reset();
 
     // Initialize drive variables
     float vertical;
@@ -29,6 +27,9 @@ public class Omnidrive extends LinearOpMode {
     boolean clawClosed = false;
 
     // ! Runs until the end of the match after play is pressed
+    waitForStart();
+    robot.timeElapsed.reset();
+
     while (opModeIsActive()) {
       double max;
 

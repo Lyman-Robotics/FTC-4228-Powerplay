@@ -7,29 +7,26 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Forward & Back", group = "Autonomous")
+@Autonomous(name = "Forward & Back", group = "Autonomous Old")
 public class AutoForward extends LinearOpMode {
   @Override
   public void runOpMode() {
     // Initialize the hardware variables.
-    RobotClass robot = new RobotClass(hardwareMap);
+    RobotClass robot = new RobotClass(hardwareMap, true);
 
     // ! Runs upon initialization
     telemetry.addData("Status", "Initialized");
     telemetry.update();
-    waitForStart();
-    robot.timeElapsed.reset();
 
     robot.BRDrive.setDirection(DcMotor.Direction.FORWARD);
     robot.FLDrive.setDirection(DcMotor.Direction.REVERSE);
     robot.FRDrive.setDirection(DcMotor.Direction.REVERSE);
     robot.BLDrive.setDirection(DcMotor.Direction.FORWARD);
 
-    robot.ClawServo.setPosition(0.7494); // Init position of servo
-
-    // Initialize drive variables
-
     // ! Runs until the end of the match after play is pressed
+    waitForStart();
+    robot.timeElapsed.reset();
+
     while (opModeIsActive()) {
       robot.ClawServo.setPosition(0.355);
       realSleep(1500, "Servo closed", robot);
