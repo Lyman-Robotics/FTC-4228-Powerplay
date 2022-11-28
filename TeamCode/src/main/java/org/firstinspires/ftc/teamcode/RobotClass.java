@@ -45,8 +45,8 @@ public class RobotClass {
   HardwareMap hwMap = null;
   public ElapsedTime timeElapsed = new ElapsedTime();
 
-  public RobotClass(HardwareMap hwMap) {
-    init(hwMap);
+  public RobotClass(HardwareMap hwMap, Boolean initServo) {
+    init(hwMap, initServo);
   }
 
   /* Initialize standard Hardware interfaces */
