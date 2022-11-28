@@ -7,7 +7,11 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+<<<<<<< HEAD
 @Autonomous(name = "Forward & Back", group = "Autonomous Old")
+=======
+@Autonomous(name = "tedt", group = "tedt")
+>>>>>>> parent of 1a73325 (among us)
 public class AutoForward extends LinearOpMode {
   @Override
   public void runOpMode() {
@@ -17,6 +21,7 @@ public class AutoForward extends LinearOpMode {
     // ! Runs upon initialization
     telemetry.addData("Status", "Initialized");
     telemetry.update();
+<<<<<<< HEAD
 
     robot.BRDrive.setDirection(DcMotor.Direction.FORWARD);
     robot.FLDrive.setDirection(DcMotor.Direction.REVERSE);
@@ -64,6 +69,60 @@ public class AutoForward extends LinearOpMode {
       // robot.omnidrive(0.5, (Math.PI / 2), 0);
 
       realSleep(9999999, "Done", robot);
+=======
+    waitForStart();
+    robot.timeElapsed.reset();
+
+    robot.ClawServo.setPosition(0.4);
+
+    // Initialize drive variables
+    float vertical;
+    float horizontal;
+    float pivot;
+    double speedScalar;
+
+    // ! Runs until the end of the match after play is pressed
+    while (opModeIsActive()) {
+      // double max;
+
+      // vertical = gamepad1.left_stick_y;
+      // horizontal = -gamepad1.left_stick_x;
+      // pivot = -gamepad1.right_stick_x;
+
+      // if (gamepad1.right_bumper) {
+      // slowMode = true;
+      // } else if (gamepad1.left_bumper) {
+      // slowMode = false;
+      // }
+      // speedScalar = slowMode ? 0.15 : 0.65;
+
+      // double FRPower = ((-pivot + (vertical - horizontal)) * speedScalar);
+      // double BRPower = ((-pivot + vertical + horizontal) * speedScalar);
+      // double FLPower = ((pivot + vertical + horizontal) * speedScalar);
+      // double BLPower = ((pivot + (vertical - horizontal)) * speedScalar);
+
+      // // ? Nerd stuff to make sure the robot doesn't go too fast
+      // max = Math.max(Math.abs(FLPower), Math.abs(FRPower));
+      // max = Math.max(max, Math.abs(BLPower));
+      // max = Math.max(max, Math.abs(BRPower));
+
+      // if (max > 1.0) {
+      // FLPower /= max;
+      // FRPower /= max;
+      // BLPower /= max;
+      // BRPower /= max;
+      // }
+      // // ? Nerd stuff ends here
+
+      // // Send calculated power to wheels
+      // // robot.setDrivePower(FLPower, FRPower, BLPower, BRPower);
+
+      robot.setDrivePower(-.5, -.5, -.5, -.5);
+
+      sleep(500);
+      robot.setDrivePower(0, 0, 0, 0);
+      sleep(9999999);
+>>>>>>> parent of 1a73325 (among us)
     }
   }
 

@@ -18,6 +18,8 @@ public class Omnidrive extends LinearOpMode {
     telemetry.addData("Status", "Initialized");
     telemetry.update();
 
+    robot.ClawServo.setPosition(0.68);
+
     // Initialize drive variables
     float vertical;
     float horizontal;
@@ -64,12 +66,17 @@ public class Omnidrive extends LinearOpMode {
 
       robot.setDrivePower(FLPower, FRPower, BLPower, BRPower);
 
+<<<<<<< HEAD
       // ? Actual Servo
+=======
+      // Servo on gamepad
+>>>>>>> parent of 1a73325 (among us)
       if (gamepad2.x) {
         clawClosed = false;
       } else if (gamepad2.y) {
         clawClosed = true;
       }
+<<<<<<< HEAD
       robot.ClawServo.setPosition(clawClosed ? 0.355 : 0.7494);
 
       // ? This is for testing purposes
@@ -79,6 +86,9 @@ public class Omnidrive extends LinearOpMode {
       // robot.ClawServo.setPosition(robot.ClawServo.getPosition() - 0.001);
       // }
 
+=======
+      robot.ClawServo.setPosition(clawClosed ? 0.4 : 0.75);
+>>>>>>> parent of 1a73325 (among us)
       // Slide on gamepad
       if (gamepad2.a) {
         robot.SlideMotor.setPower(1);
