@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 
-// import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 // import org.firstinspires.ftc.teamcode.common.powerplay.SleeveDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -93,9 +93,9 @@ public class RobotClass {
     }
 
     // TODO Open CV
-    int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
-        hardwareMap.appContext.getPackageName());
-    camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, webcamName),
+    int cameraMonitorViewId = hwMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
+        hwMap.appContext.getPackageName());
+    camera = OpenCvCameraFactory.getInstance().createWebcam(hwMap.get(WebcamName.class, webcamName),
         cameraMonitorViewId);
     sleeveDetection = new SleeveDetection();
     camera.setPipeline(sleeveDetection);
