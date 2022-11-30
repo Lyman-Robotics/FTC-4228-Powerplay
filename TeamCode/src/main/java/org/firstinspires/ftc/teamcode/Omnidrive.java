@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@TeleOp(name = "Omnidrive", group = "Driver Controlled")
+@TeleOp(name = "Omnirive", group = "Driver Controlled")
 public class Omnidrive extends LinearOpMode {
   @Override
   public void runOpMode() {
