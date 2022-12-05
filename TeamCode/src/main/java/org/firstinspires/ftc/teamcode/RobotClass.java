@@ -35,6 +35,13 @@ public class RobotClass {
   public String position;
   public SleeveDetection sleeveDetection;
 
+  public float omniRightVal = (float) (Math.PI / 2.0);
+  public float omniLeftVal = (float) (3.0 * (Math.PI / 2.0));
+  public double slidePowerUp = 1;
+  public double slidePowerDown = -0.5;
+  public float servoOpenPos = (float) 0.7494;
+  public float servoClosePos = (float) 0.355;
+
   HardwareMap hwMap = null;
   public ElapsedTime timeElapsed = new ElapsedTime();
 
@@ -96,7 +103,7 @@ public class RobotClass {
     camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
       @Override
       public void onOpened() {
-        camera.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_LEFT);
+        camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
       }
 
       @Override
@@ -106,7 +113,7 @@ public class RobotClass {
 
     position = sleeveDetection.getPosition();
     // TODO End Open CV
-  }
+  } 
 
   public void resetDrive() {
     FLDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

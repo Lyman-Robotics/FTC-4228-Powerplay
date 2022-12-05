@@ -70,7 +70,7 @@ public class Omnidrive extends LinearOpMode {
       } else if (gamepad2.y) {
         clawClosed = true;
       }
-      robot.ClawServo.setPosition(clawClosed ? 0.355 : 0.7494);
+      robot.ClawServo.setPosition(clawClosed ? robot.servoClosePos : robot.servoOpenPos);
 
       // ** This is for testing purposes
       // if (gamepad2.x) {
@@ -81,9 +81,9 @@ public class Omnidrive extends LinearOpMode {
 
       // Slide on gamepad
       if (gamepad2.a) {
-        robot.SlideMotor.setPower(1);
+        robot.SlideMotor.setPower(robot.slidePowerUp);
       } else if (gamepad2.b && robot.SlideTouchSensor.getState()) {
-        robot.SlideMotor.setPower(-0.5);
+        robot.SlideMotor.setPower(robot.slidePowerDown);
       } else {
         robot.SlideMotor.setPower(0);
       }
