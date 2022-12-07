@@ -48,51 +48,27 @@ public class RedRightPower extends LinearOpMode {
       robot.SlideMotor.setPower(robot.slidePowerUp);
       realSleep(350, "Slide up with cone", robot);
       robot.SlideMotor.setPower(0);
-      realSleep(100, "Slide motor stopped", robot);
+      realSleep(500, "Wait to move", robot);
+      robot.setDrivePower(.25, .25, .25, .25);
+      realSleep(1560, "Move to signal cone", robot);
+      robot.stopDrive();
+      realSleep(500, "Wait to show cone", robot);
 
-      robot.setDrivePower(0.25, 0.25, 0.25, 0.25);
-      realSleep(2000, "Forward", robot);
-
-      robot.omnidrive(.5, Math.PI / -2, 0);
-      realSleep(500, "omni-driving to the left", robot);
-
-      robot.setDrivePower(0.2, 0.2, 0.2, 0.2); // get junction inside of v thing\
-      realSleep(250, "onto high junction", robot);
-
-      robot.ClawServo.setPosition(0.7494); // open servo and drop cone on high junction
-      realSleep(100, "Servo open", robot);
-
-      robot.setDrivePower(-0.2, -0.2, -0.2, -0.2); // back up
-      realSleep(500, "backing up", robot);
-      robot.SlideMotor.setPower(-1);
-      realSleep(2400, "Slide motor down", robot); // sligjhtly less so dont de-tension cable
-      robot.SlideMotor.setPower(0);
-      realSleep(100, "Slide motor stopped", robot);
-      robot.ClawServo.setPosition(0.355);
-      realSleep(150, "Servo closed", robot);
-
-      // here, robot should be just in front of the high junction and ready 2 park
-      // ALREADY BACKED UP!
       if (robot.position.equals("Left")) {
-        // drive to left (position one)
-        robot.omnidrive(.2, (Math.PI / 2) * -1, 0);
-        realSleep(350, "omni to location one", robot);
-        robot.setDrivePower(0, 0, 0, 0);
-        realSleep(100, "parked in location one", robot);
-
+        // ** Good
+        robot.stopDrive();
+        robot.omnidrive(0.5, robot.omniLeftVal, 0);
+        realSleep(1300, "omni to pole", robot);
+        robot.stopDrive();
+      } else if (robot.position.equals("Center")) {
+        // ** Good
+        robot.stopDrive();
       } else if (robot.position.equals("Right")) {
-        // drive to right (position three)
-        robot.omnidrive(.2, (Math.PI / 2), 0);
-        realSleep(700, "omni to location three", robot);
-        robot.setDrivePower(0, 0, 0, 0);
-        realSleep(100, "parked in location three", robot);
-
-      } else {
-        // drive to center (position two)
-        robot.omnidrive(.2, (Math.PI / 2), 0);
-        realSleep(350, "omni to location two", robot);
-        robot.setDrivePower(0, 0, 0, 0);
-        realSleep(100, "parked in location two", robot);
+        // ** Good
+        robot.stopDrive();
+        robot.omnidrive(0.5, robot.omniRightVal, 0);
+        realSleep(1300, "omni to pole", robot);
+        robot.stopDrive();
       }
 
       realSleep(9999999, "Done", robot);

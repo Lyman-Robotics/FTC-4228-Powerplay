@@ -58,16 +58,16 @@ public class RedRightEncoder extends LinearOpMode {
       realSleep(500, "Wait to show cone", robot);
 
       if (robot.position.equals("Left")) {
-        // ! Bad
+        // ** Good
         robot.stopDrive();
         robot.omnidrive(0.5, robot.omniLeftVal, 0);
         realSleep(1300, "omni to pole", robot);
         robot.stopDrive();
       } else if (robot.position.equals("Center")) {
-        // !** Good
+        // ** Good
         robot.stopDrive();
       } else if (robot.position.equals("Right")) {
-        // ! Bad
+        // ** Good
         robot.stopDrive();
         robot.omnidrive(0.5, robot.omniRightVal, 0);
         realSleep(1300, "omni to pole", robot);
