@@ -115,6 +115,20 @@ public class RobotClass {
     // TODO End Open CV
   } 
 
+  public void setToEncoderMode() {
+    FLDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    FRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    BLDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    BRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+  }
+
+  public void setToPowerMode() {
+    FLDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    FRDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    BLDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    BRDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+  }
+
   public void resetDrive() {
     FLDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     FRDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);

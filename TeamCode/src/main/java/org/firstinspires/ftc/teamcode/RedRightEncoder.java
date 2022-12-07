@@ -1,22 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
-//all ofg this is copy an dpasted from visionTest
-// import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-// import org.firstinspires.ftc.teamcode.common.powerplay.SleeveDetection;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
-
-@Autonomous(name = "Red Right", group = "Autonomous")
+@Autonomous(name = "Red Left Encoder", group = "Autonomous")
 // @Disabled
-public class RedRight extends LinearOpMode {
+public class RedRightEncoder extends LinearOpMode {
   @Override
   public void runOpMode() {
     // Initialize the hardware variables.
@@ -30,6 +20,9 @@ public class RedRight extends LinearOpMode {
     robot.FLDrive.setDirection(DcMotor.Direction.REVERSE);
     robot.FRDrive.setDirection(DcMotor.Direction.REVERSE);
     robot.BLDrive.setDirection(DcMotor.Direction.FORWARD);
+
+    robot.setToEncoderMode();
+    robot.resetDrive();
 
     // TODO Open CV
     while (!isStarted()) {
@@ -63,7 +56,7 @@ public class RedRight extends LinearOpMode {
         realSleep(1300,"omni to pole",robot);
         robot.stopDrive();
       } else if (robot.position.equals("Center")) {
-        // ** Good
+        // !** Good
         robot.stopDrive();
       } else if (robot.position.equals("Right")) {
         // ! Bad
