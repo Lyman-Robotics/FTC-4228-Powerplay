@@ -1,11 +1,16 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+// import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.DcMotor;
+// import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+// import org.openftc.easyopencv.OpenCvCamera;
+// import org.openftc.easyopencv.OpenCvCameraFactory;
+// import org.openftc.easyopencv.OpenCvCameraRotation;
 
 @Autonomous(name = "Red Left Power", group = "Autonomous")
 // @Disabled
@@ -39,9 +44,9 @@ public class RedRightPower extends LinearOpMode {
     while (opModeIsActive()) {
       // ! New Stuff
       robot.ClawServo.setPosition(robot.servoClosePos);
-      realSleep(1000,"Close Servo with cone",robot);
+      realSleep(1000, "Close Servo with cone", robot);
       robot.SlideMotor.setPower(robot.slidePowerUp);
-      realSleep(350,"Slide up with cone",robot);
+      realSleep(350, "Slide up with cone", robot);
       robot.SlideMotor.setPower(0);
       realSleep(100, "Slide motor stopped", robot);
 

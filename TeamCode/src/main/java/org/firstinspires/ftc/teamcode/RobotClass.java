@@ -6,11 +6,11 @@ import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.DcMotorController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.TouchSensor;
+// import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
+// import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 // import org.firstinspires.ftc.teamcode.common.powerplay.SleeveDetection;
@@ -18,7 +18,7 @@ import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+// import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class RobotClass {
   // ** Declare OpMode members
@@ -113,7 +113,7 @@ public class RobotClass {
 
     position = sleeveDetection.getPosition();
     // TODO End Open CV
-  } 
+  }
 
   public void setToEncoderMode() {
     FLDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
