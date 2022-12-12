@@ -89,7 +89,7 @@ public class RobotClass {
 
     // If init servo, set to init position
     if (initServo) {
-      ClawServo.setPosition(0.7494);
+      ClawServo.setPosition(servoOpenPos);
     }
 
     // TODO Open CV
