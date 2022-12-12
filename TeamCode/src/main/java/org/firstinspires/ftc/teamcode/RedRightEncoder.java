@@ -3,9 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-// import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-// import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 // import org.openftc.easyopencv.OpenCvCamera;
@@ -45,23 +44,20 @@ public class RedRightEncoder extends LinearOpMode {
     robot.timeElapsed.reset();
 
     while (opModeIsActive()) {
-      // ! New Stuff
+      robot.resetDrive();
       robot.ClawServo.setPosition(robot.servoClosePos);
-      realSleep(1000, "Close Servo with cone", robot);
+      sleep(1000);
       robot.SlideMotor.setPower(robot.slidePowerUp);
-      realSleep(350, "Slide up with cone", robot);
+      sleep(1000);
       robot.SlideMotor.setPower(0);
-      realSleep(500, "Wait to move", robot);
-      robot.setDrivePower(.25, .25, .25, .25);
-      realSleep(1560, "Move to signal cone", robot);
-      robot.stopDrive();
-      realSleep(500, "Wait to show cone", robot);
-
+      sleep(500);
+      robot.encoderDrive(0.2, 859, 747, 778, 862);
+      sleep(2000);
       if (robot.position.equals("Left")) {
         // ** Good
         robot.stopDrive();
-        robot.omnidrive(0.5, robot.omniLeftVal, 0);
-        realSleep(1300, "omni to pole", robot);
+        robot.encoderDrive(0.2, -768, 711, 835, -822); //last one! :D
+        realSleep(3000, "omni to pole", robot);
         robot.stopDrive();
       } else if (robot.position.equals("Center")) {
         // ** Good
@@ -69,11 +65,11 @@ public class RedRightEncoder extends LinearOpMode {
       } else if (robot.position.equals("Right")) {
         // ** Good
         robot.stopDrive();
-        robot.omnidrive(0.5, robot.omniRightVal, 0);
-        realSleep(1300, "omni to pole", robot);
+        robot.encoderDrive(0.2, 700, -661, -728, 791);
+        realSleep(3000, "omni to pole", robot);
         robot.stopDrive();
       }
-
+      robot.stopDrive();
       realSleep(9999999, "Done", robot);
     }
   }
@@ -89,4 +85,14 @@ public class RedRightEncoder extends LinearOpMode {
 
     sleep(n);
   }
+
+  public void encoderTelemetry(RobotClass robot) {
+    telemetry.addData("FL Encoder", robot.FLDrive.getCurrentPosition());
+    telemetry.addData("FR Encoder", robot.FRDrive.getCurrentPosition());
+    telemetry.addData("BL Encoder", robot.BLDrive.getCurrentPosition());
+    telemetry.addData("BR Encoder", robot.BRDrive.getCurrentPosition());
+    telemetry.update();
+  }
+  
+
 }
