@@ -156,6 +156,11 @@ public class RobotClass {
     FRDrive.setTargetPosition(0);
     BLDrive.setTargetPosition(0);
     BRDrive.setTargetPosition(0);
+
+    FLDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    FRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    BLDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    BRDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
   }
 
   public void runToPos() {

@@ -11,9 +11,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // import org.openftc.easyopencv.OpenCvCameraFactory;
 // import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "Red Left Encoder", group = "Autonomous")
+@Autonomous(name = "Encoder Park", group = "Autonomous")
 // @Disabled
-public class RedRightEncoder extends LinearOpMode {
+public class EncoderPark extends LinearOpMode {
 
   @Override
   public void runOpMode() {
@@ -46,18 +46,25 @@ public class RedRightEncoder extends LinearOpMode {
     while (opModeIsActive()) {
       robot.resetDrive();
       robot.ClawServo.setPosition(robot.servoClosePos);
-      sleep(1000);
+      realSleep(1000, "Close claw", robot);
       robot.SlideMotor.setPower(robot.slidePowerUp);
-      sleep(1000);
+      realSleep(1200, "Raise slide", robot);
       robot.SlideMotor.setPower(0);
-      sleep(500);
+      realSleep(500, "Stop slide", robot);
       robot.encoderDrive(0.2, 859, 747, 778, 862);
+      sleep(2000);
+      robot.encoderDrive(0.2, 509, 448, 466, 508);
+      sleep(1000);
+      robot.stopDrive();
+      sleep(1000);
+      robot.encoderDrive(0.2, -509, -448, -466, -508);
+
       sleep(2000);
       if (robot.position.equals("Left")) {
         // ** Good
         robot.stopDrive();
         robot.encoderDrive(0.2, -768, 711, 835, -822); // last one! :D
-        realSleep(3000, "omni to pole", robot);
+        realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       } else if (robot.position.equals("Center")) {
         // ** Good
@@ -66,7 +73,7 @@ public class RedRightEncoder extends LinearOpMode {
         // ** Good
         robot.stopDrive();
         robot.encoderDrive(0.2, 700, -661, -728, 791);
-        realSleep(3000, "omni to pole", robot);
+        realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       }
       robot.stopDrive();
@@ -77,11 +84,10 @@ public class RedRightEncoder extends LinearOpMode {
   public void realSleep(int n, String customAdd, RobotClass robot) { // better sleep method, dont use other crappy
     // stuffs
     telemetry.addData("Status", customAdd);
-    telemetry.addData("Claw Servo Position", robot.ClawServo.getPosition());
-    telemetry.addData(
-        "Slide Touch Sensor",
-        !(robot.SlideTouchSensor.getState()));
-    telemetry.addData("Elapsed Time", robot.timeElapsed.toString());
+    telemetry.addData("FL Encoder", -robot.FLDrive.getCurrentPosition());
+    telemetry.addData("FR Encoder", -robot.FRDrive.getCurrentPosition());
+    telemetry.addData("BL Encoder", -robot.BLDrive.getCurrentPosition());
+    telemetry.addData("BR Encoder", -robot.BRDrive.getCurrentPosition());
     telemetry.addData("Cone Pos", robot.position);
     telemetry.update();
 

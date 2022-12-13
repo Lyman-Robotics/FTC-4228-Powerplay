@@ -11,9 +11,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // import org.openftc.easyopencv.OpenCvCameraFactory;
 // import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "Red Right Power", group = "Autonomous")
+@Autonomous(name = "Right Encoder Cone", group = "Autonomous")
 // @Disabled
-public class RedRightPower extends LinearOpMode {
+public class RightEncoderCone extends LinearOpMode {
 
   @Override
   public void runOpMode() {
@@ -29,6 +29,9 @@ public class RedRightPower extends LinearOpMode {
     robot.FRDrive.setDirection(DcMotor.Direction.REVERSE);
     robot.BLDrive.setDirection(DcMotor.Direction.FORWARD);
 
+    robot.setToEncoderMode();
+    robot.resetDrive();
+
     while (!isStarted()) {
       telemetry.addData("Position", robot.sleeveDetection.getPosition());
       telemetry.addData("PRELOAD CONE", "PRELOAD IT DUMBASS");
@@ -41,23 +44,27 @@ public class RedRightPower extends LinearOpMode {
     robot.timeElapsed.reset();
 
     while (opModeIsActive()) {
-      // ! New Stuff
+      robot.resetDrive();
       robot.ClawServo.setPosition(robot.servoClosePos);
-      realSleep(1000, "Close Servo with cone", robot);
+      realSleep(1000, "Close claw", robot);
       robot.SlideMotor.setPower(robot.slidePowerUp);
-      realSleep(350, "Slide up with cone", robot);
+      realSleep(1200, "Raise slide", robot);
       robot.SlideMotor.setPower(0);
-      realSleep(500, "Wait to move", robot);
-      robot.setDrivePower(.25, .25, .25, .25);
-      realSleep(1560, "Move to signal cone", robot);
+      realSleep(500, "Stop slide", robot);
+      robot.encoderDrive(0.2, 859, 747, 778, 862);
+      sleep(2000);
+      robot.encoderDrive(0.2, 509, 448, 466, 508);
+      sleep(1000);
       robot.stopDrive();
-      realSleep(500, "Wait to show cone", robot);
+      sleep(1000);
+      robot.encoderDrive(0.2, -509, -448, -466, -508);
 
+      sleep(2000);
       if (robot.position.equals("Left")) {
         // ** Good
         robot.stopDrive();
-        robot.omnidrive(0.5, robot.omniLeftVal, 0);
-        realSleep(1300, "omni to pole", robot);
+        robot.encoderDrive(0.2, -768, 711, 835, -822); // last one! :D
+        realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       } else if (robot.position.equals("Center")) {
         // ** Good
@@ -65,11 +72,11 @@ public class RedRightPower extends LinearOpMode {
       } else if (robot.position.equals("Right")) {
         // ** Good
         robot.stopDrive();
-        robot.omnidrive(0.5, robot.omniRightVal, 0);
-        realSleep(1300, "omni to pole", robot);
+        robot.encoderDrive(0.2, 700, -661, -728, 791);
+        realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       }
-
+      robot.stopDrive();
       realSleep(9999999, "Done", robot);
     }
   }
@@ -77,19 +84,21 @@ public class RedRightPower extends LinearOpMode {
   public void realSleep(int n, String customAdd, RobotClass robot) { // better sleep method, dont use other crappy
     // stuffs
     telemetry.addData("Status", customAdd);
-    telemetry.addData("Claw Servo Position", robot.ClawServo.getPosition());
-    telemetry.addData(
-      "Slide Touch Sensor",
-      !(robot.SlideTouchSensor.getState())
-    );
-    telemetry.addData("Elapsed Time", robot.timeElapsed.toString());
+    telemetry.addData("FL Encoder", -robot.FLDrive.getCurrentPosition());
+    telemetry.addData("FR Encoder", -robot.FRDrive.getCurrentPosition());
+    telemetry.addData("BL Encoder", -robot.BLDrive.getCurrentPosition());
+    telemetry.addData("BR Encoder", -robot.BRDrive.getCurrentPosition());
+    telemetry.addData("Cone Pos", robot.position);
+    telemetry.update();
 
     sleep(n);
+  }
 
-    // telemetry.addData("Front left/Right", "%4.2f, %4.2f", robot.FLPower,
-    // robot.FRPower);
-    // telemetry.addData("Back left/Right", "%4.2f, %4.2f", robot.BLPower,
-    // robot.BRPower);
+  public void encoderTelemetry(RobotClass robot) {
+    telemetry.addData("FL Encoder", robot.FLDrive.getCurrentPosition());
+    telemetry.addData("FR Encoder", robot.FRDrive.getCurrentPosition());
+    telemetry.addData("BL Encoder", robot.BLDrive.getCurrentPosition());
+    telemetry.addData("BR Encoder", robot.BRDrive.getCurrentPosition());
     telemetry.update();
   }
 }
