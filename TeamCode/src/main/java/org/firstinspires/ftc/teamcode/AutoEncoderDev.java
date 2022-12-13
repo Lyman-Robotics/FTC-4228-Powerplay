@@ -33,33 +33,17 @@ public class AutoEncoderDev extends LinearOpMode {
     robot.timeElapsed.reset();
 
     while (opModeIsActive()) {
-      double max;
-
-      vertical = gamepad1.left_stick_y;
-      horizontal = -gamepad1.left_stick_x;
-      pivot = -gamepad1.right_stick_x;
-
-      speedScalar = 0.2; // used to be .65 for fast
-
-      double FRPower = ((-pivot + (vertical - horizontal)) * speedScalar);
-      double BRPower = ((-pivot + vertical + horizontal) * speedScalar);
-      double FLPower = ((pivot + vertical + horizontal) * speedScalar);
-      double BLPower = ((pivot + (vertical - horizontal)) * speedScalar);
-
-      // ? Nerd stuff to make sure the robot doesn't go too fast
-      max = Math.max(Math.abs(FLPower), Math.abs(FRPower));
-      max = Math.max(max, Math.abs(BLPower));
-      max = Math.max(max, Math.abs(BRPower));
-
-      if (max > 1.0) {
-        FLPower /= max;
-        FRPower /= max;
-        BLPower /= max;
-        BRPower /= max;
-      }
-      // ? Nerd stuff ends here
-
-      robot.setDrivePower(FLPower, FRPower, BLPower, BRPower);
+      if (gamepad1.left_stick_y < 0) {
+          robot.setDrivePower(0.25, 0.25, 0.25, 0.25);
+        } else if (gamepad1.left_stick_y > 0) {
+          robot.setDrivePower(-0.25, -0.25, -0.25, -0.25);
+        } else if (gamepad1.left_stick_x > 0) {
+          robot.omnidrive(0.5, (Math.PI / 2), 0);
+        } else if (gamepad1.left_stick_x < 0) {
+          robot.omnidrive(-0.5, (Math.PI / 2), 0);
+        } else {
+          robot.setDrivePower(0, 0, 0, 0);
+        }
 
       if (gamepad1.right_stick_button) {
         robot.resetDrive();
