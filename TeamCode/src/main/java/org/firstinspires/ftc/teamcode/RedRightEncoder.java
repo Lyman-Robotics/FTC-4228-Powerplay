@@ -32,7 +32,6 @@ public class RedRightEncoder extends LinearOpMode {
     robot.setToEncoderMode();
     robot.resetDrive();
 
-    // TODO Open CV
     while (!isStarted()) {
       telemetry.addData("Position", robot.sleeveDetection.getPosition());
       telemetry.addData("PRELOAD CONE", "PRELOAD IT DUMBASS");
@@ -57,7 +56,7 @@ public class RedRightEncoder extends LinearOpMode {
       if (robot.position.equals("Left")) {
         // ** Good
         robot.stopDrive();
-        robot.encoderDrive(0.2, -768, 711, 835, -822); //last one! :D
+        robot.encoderDrive(0.2, -768, 711, 835, -822); // last one! :D
         realSleep(3000, "omni to pole", robot);
         robot.stopDrive();
       } else if (robot.position.equals("Center")) {
@@ -80,9 +79,8 @@ public class RedRightEncoder extends LinearOpMode {
     telemetry.addData("Status", customAdd);
     telemetry.addData("Claw Servo Position", robot.ClawServo.getPosition());
     telemetry.addData(
-      "Slide Touch Sensor",
-      !(robot.SlideTouchSensor.getState())
-    );
+        "Slide Touch Sensor",
+        !(robot.SlideTouchSensor.getState()));
     telemetry.addData("Elapsed Time", robot.timeElapsed.toString());
     telemetry.addData("Cone Pos", robot.position);
     telemetry.update();
