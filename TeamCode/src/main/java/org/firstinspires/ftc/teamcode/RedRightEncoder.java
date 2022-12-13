@@ -1,10 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 // import org.openftc.easyopencv.OpenCvCamera;
@@ -14,6 +14,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "Red Left Encoder", group = "Autonomous")
 // @Disabled
 public class RedRightEncoder extends LinearOpMode {
+
   @Override
   public void runOpMode() {
     // Initialize the hardware variables.
@@ -75,10 +76,13 @@ public class RedRightEncoder extends LinearOpMode {
   }
 
   public void realSleep(int n, String customAdd, RobotClass robot) { // better sleep method, dont use other crappy
-                                                                     // stuffs
+    // stuffs
     telemetry.addData("Status", customAdd);
     telemetry.addData("Claw Servo Position", robot.ClawServo.getPosition());
-    telemetry.addData("Slide Touch Sensor", !(robot.SlideTouchSensor.getState()));
+    telemetry.addData(
+      "Slide Touch Sensor",
+      !(robot.SlideTouchSensor.getState())
+    );
     telemetry.addData("Elapsed Time", robot.timeElapsed.toString());
     telemetry.addData("Cone Pos", robot.position);
     telemetry.update();
@@ -93,6 +97,4 @@ public class RedRightEncoder extends LinearOpMode {
     telemetry.addData("BR Encoder", robot.BRDrive.getCurrentPosition());
     telemetry.update();
   }
-  
-
 }
