@@ -3,13 +3,12 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "Autonomous Dev", group = "Autonomous Dev")
 public class AutonomousDev extends LinearOpMode {
-
   @Override
   public void runOpMode() {
     // Initialize the hardware variables.
@@ -68,10 +67,7 @@ public class AutonomousDev extends LinearOpMode {
         }
       }
 
-      telemetry.addData(
-        "Segment " + segmentAmount + " time",
-        segmentTime.toString()
-      );
+      telemetry.addData("Segment " + segmentAmount + " time", segmentTime.toString());
       telemetry.addData("Running", running);
       telemetry.addData("Segment End", segmentEnd);
       telemetry.update();

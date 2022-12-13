@@ -3,13 +3,12 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "Omnirive", group = "Driver Controlled")
 public class Omnidrive extends LinearOpMode {
-
   @Override
   public void runOpMode() {
     // Initialize the hardware variables.
@@ -71,9 +70,7 @@ public class Omnidrive extends LinearOpMode {
       } else if (gamepad2.y) {
         clawClosed = true;
       }
-      robot.ClawServo.setPosition(
-        clawClosed ? robot.servoClosePos : robot.servoOpenPos
-      );
+      robot.ClawServo.setPosition(clawClosed ? robot.servoClosePos : robot.servoOpenPos);
 
       // ** This is for testing purposes
       // if (gamepad2.x) {
@@ -94,10 +91,7 @@ public class Omnidrive extends LinearOpMode {
       // Show the elapsed game time and wheel power.
       telemetry.addData("Claw Servo Position", robot.ClawServo.getPosition());
       telemetry.addData("Slow Mode", slowMode);
-      telemetry.addData(
-        "Slide Touch Sensor",
-        !(robot.SlideTouchSensor.getState())
-      );
+      telemetry.addData("Slide Touch Sensor", !(robot.SlideTouchSensor.getState()));
       telemetry.addData("Elapsed Time", robot.timeElapsed.toString());
 
       telemetry.addData("Front left/Right", "%4.2f, %4.2f", FLPower, FRPower);

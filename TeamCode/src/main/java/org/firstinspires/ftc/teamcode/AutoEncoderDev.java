@@ -3,13 +3,12 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "Auto Encoder Dev", group = "Autonomous Dev")
 public class AutoEncoderDev extends LinearOpMode {
-
   @Override
   public void runOpMode() {
     // Initialize the hardware variables.
@@ -66,14 +65,14 @@ public class AutoEncoderDev extends LinearOpMode {
 
       robot.setDrivePower(FLPower, FRPower, BLPower, BRPower);
 
-      if (gamepad1.right_stick_button) {
-        robot.resetDrive();
-        robot.setToPowerMode();
+      if (gamepad1.right_stick_button){
+          robot.resetDrive();
+          robot.setToPowerMode();
       }
 
-      if (gamepad1.left_stick_button) {
-        robot.resetDrive();
-        robot.setToPowerMode();
+      if (gamepad1.left_stick_button){
+          robot.resetDrive();
+          robot.setToPowerMode();
       }
 
       telemetry.addData("FL Encoder", -robot.FLDrive.getCurrentPosition());

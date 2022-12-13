@@ -1,15 +1,15 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorController;
-import com.qualcomm.robotcore.hardware.DigitalChannel;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DcMotorController;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 // import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 // import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
@@ -20,10 +20,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 // import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-// ! npx prettier --write "**/*.java"
-
 public class RobotClass {
-
   // ** Declare OpMode members
   public DcMotor FLDrive;
   public DcMotor FRDrive;
@@ -46,7 +43,7 @@ public class RobotClass {
   public float servoClosePos = (float) 0.355;
 
   public int TickCounts = 1120;
-  public double circumference = 3.1415926535 * 3.1496063; //8cm lappy 10cm scrappy 3.149 is the 8cm to in
+  public double circumference = 3.1415926535*3.1496063; //8cm lappy 10cm scrappy 3.149 is the 8cm to in
   public double gearReduction = .0833333; // used to be .6 this is probably wrong :(
   public double countsPerInch = (TickCounts * gearReduction) / circumference; //gear reduction is < 1 if geared up
 
@@ -101,34 +98,23 @@ public class RobotClass {
     }
 
     // TODO Open CV
-    int cameraMonitorViewId = hwMap.appContext
-      .getResources()
-      .getIdentifier(
-        "cameraMonitorViewId",
-        "id",
-        hwMap.appContext.getPackageName()
-      );
-    camera =
-      OpenCvCameraFactory
-        .getInstance()
-        .createWebcam(
-          hwMap.get(WebcamName.class, webcamName),
-          cameraMonitorViewId
-        );
+    int cameraMonitorViewId = hwMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
+        hwMap.appContext.getPackageName());
+    camera = OpenCvCameraFactory.getInstance().createWebcam(hwMap.get(WebcamName.class, webcamName),
+        cameraMonitorViewId);
     sleeveDetection = new SleeveDetection();
     camera.setPipeline(sleeveDetection);
 
-    camera.openCameraDeviceAsync(
-      new OpenCvCamera.AsyncCameraOpenListener() {
-        @Override
-        public void onOpened() {
-          camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
-        }
-
-        @Override
-        public void onError(int errorCode) {}
+    camera.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
+      @Override
+      public void onOpened() {
+        camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
       }
-    );
+
+      @Override
+      public void onError(int errorCode) {
+      }
+    });
 
     position = sleeveDetection.getPosition();
     // TODO End Open CV
@@ -202,19 +188,9 @@ public class RobotClass {
     BRDrive.setTargetPosition((int) BRPos);
   }
 
-  public void encoderDrive(
-    double power,
-    int FLPos,
-    int FRPos,
-    int BLPos,
-    int BRPos
-  ) {
-    setPos(
-      FLDrive.getCurrentPosition() + FLPos,
-      FRDrive.getCurrentPosition() + FRPos,
-      BLDrive.getCurrentPosition() + BLPos,
-      BRDrive.getCurrentPosition() + BRPos
-    );
+  public void encoderDrive(double power, int FLPos, int FRPos, int BLPos, int BRPos) {
+    setPos(FLDrive.getCurrentPosition() + FLPos, FRDrive.getCurrentPosition() + FRPos,
+        BLDrive.getCurrentPosition() + BLPos, BRDrive.getCurrentPosition() + BRPos);
     runToPos();
     setDrivePower(power, power, power, power);
   }
