@@ -50,76 +50,75 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Concept: Compass Calibration", group="Concept")
+@TeleOp(name = "Concept: Compass Calibration", group = "Concept")
 @Disabled
 public class ConceptCompassCalibration extends LinearOpMode {
 
-    /* Declare OpMode members. */
-    public DcMotor leftDrive   = null;
-    public DcMotor  rightDrive  = null;
-    private ElapsedTime runtime = new ElapsedTime();
-    CompassSensor       compass;
+  /* Declare OpMode members. */
+  public DcMotor leftDrive = null;
+  public DcMotor rightDrive = null;
+  private ElapsedTime runtime = new ElapsedTime();
+  CompassSensor compass;
 
-    final static double     MOTOR_POWER   = 0.2; // scale from 0 to 1
-    static final long       HOLD_TIME_MS  = 3000;
-    static final double     CAL_TIME_SEC  = 20;
+  static final double MOTOR_POWER = 0.2; // scale from 0 to 1
+  static final long HOLD_TIME_MS = 3000;
+  static final double CAL_TIME_SEC = 20;
 
-    @Override
-    public void runOpMode() {
+  @Override
+  public void runOpMode() {
+    // Initialize the drive system variables.
+    leftDrive = hardwareMap.get(DcMotor.class, "left_drive");
+    rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
 
-        // Initialize the drive system variables.
-        leftDrive  = hardwareMap.get(DcMotor.class, "left_drive");
-        rightDrive = hardwareMap.get(DcMotor.class, "right_drive");
+    // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
+    // Pushing the left stick forward MUST make robot go forward. So adjust these two lines based on your first test drive.
+    // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
+    leftDrive.setDirection(DcMotor.Direction.REVERSE);
+    rightDrive.setDirection(DcMotor.Direction.FORWARD);
 
-        // To drive forward, most robots need the motor on one side to be reversed, because the axles point in opposite directions.
-        // Pushing the left stick forward MUST make robot go forward. So adjust these two lines based on your first test drive.
-        // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
-        leftDrive.setDirection(DcMotor.Direction.REVERSE);
-        rightDrive.setDirection(DcMotor.Direction.FORWARD);
+    // get a reference to our Compass Sensor object.
+    compass = hardwareMap.get(CompassSensor.class, "compass");
 
-        // get a reference to our Compass Sensor object.
-        compass = hardwareMap.get(CompassSensor.class, "compass");
+    // Send telemetry message to signify robot waiting;
+    telemetry.addData("Status", "Ready to cal"); //
+    telemetry.update();
 
-        // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Ready to cal");    //
-        telemetry.update();
+    // Wait for the game to start (driver presses PLAY)
+    waitForStart();
 
-        // Wait for the game to start (driver presses PLAY)
-        waitForStart();
+    // Set the compass to calibration mode
+    compass.setMode(CompassSensor.CompassMode.CALIBRATION_MODE);
+    telemetry.addData("Compass", "Compass in calibration mode");
+    telemetry.update();
 
-        // Set the compass to calibration mode
-        compass.setMode(CompassSensor.CompassMode.CALIBRATION_MODE);
-        telemetry.addData("Compass", "Compass in calibration mode");
-        telemetry.update();
+    sleep(HOLD_TIME_MS); // Just do a sleep while we switch modes
 
-        sleep(HOLD_TIME_MS);  // Just do a sleep while we switch modes
+    // Start the robot rotating clockwise
+    telemetry.addData("Compass", "Calibration mode. Turning the robot...");
+    telemetry.update();
+    leftDrive.setPower(MOTOR_POWER);
+    rightDrive.setPower(-MOTOR_POWER);
 
-        // Start the robot rotating clockwise
-        telemetry.addData("Compass", "Calibration mode. Turning the robot...");
-        telemetry.update();
-        leftDrive.setPower(MOTOR_POWER);
-        rightDrive.setPower(-MOTOR_POWER);
-
-        // run until time expires OR the driver presses STOP;
-        runtime.reset();
-        while (opModeIsActive() && (runtime.time() < CAL_TIME_SEC)) {
-            idle();
-        }
-
-        // Stop all motors and turn off claibration
-        leftDrive.setPower(0);
-        rightDrive.setPower(0);
-        compass.setMode(CompassSensor.CompassMode.MEASUREMENT_MODE);
-        telemetry.addData("Compass", "Returning to measurement mode");
-        telemetry.update();
-
-        sleep(HOLD_TIME_MS);  // Just do a sleep while we switch modes
-
-        // Report whether the Calibration was successful or not.
-        if (compass.calibrationFailed())
-            telemetry.addData("Compass", "Calibrate Failed. Try Again!");
-        else
-            telemetry.addData("Compass", "Calibrate Passed.");
-        telemetry.update();
+    // run until time expires OR the driver presses STOP;
+    runtime.reset();
+    while (opModeIsActive() && (runtime.time() < CAL_TIME_SEC)) {
+      idle();
     }
+
+    // Stop all motors and turn off claibration
+    leftDrive.setPower(0);
+    rightDrive.setPower(0);
+    compass.setMode(CompassSensor.CompassMode.MEASUREMENT_MODE);
+    telemetry.addData("Compass", "Returning to measurement mode");
+    telemetry.update();
+
+    sleep(HOLD_TIME_MS); // Just do a sleep while we switch modes
+
+    // Report whether the Calibration was successful or not.
+    if (compass.calibrationFailed()) telemetry.addData(
+      "Compass",
+      "Calibrate Failed. Try Again!"
+    ); else telemetry.addData("Compass", "Calibrate Passed.");
+    telemetry.update();
+  }
 }
