@@ -91,9 +91,8 @@ public class AutonomousDev extends LinearOpMode {
       }
 
       telemetry.addData(
-        "Segment " + segmentAmount + " time",
-        segmentTime.toString()
-      );
+          "Segment " + segmentAmount + " time",
+          segmentTime.toString());
       telemetry.addData("Running", running);
       telemetry.addData("Segment End", segmentEnd);
       telemetry.update();

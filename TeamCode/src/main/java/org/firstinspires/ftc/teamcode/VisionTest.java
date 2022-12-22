@@ -20,39 +20,36 @@ public class VisionTest extends LinearOpMode {
   @Override
   public void runOpMode() throws InterruptedException {
     int cameraMonitorViewId = hardwareMap.appContext
-      .getResources()
-      .getIdentifier(
-        "cameraMonitorViewId",
-        "id",
-        hardwareMap.appContext.getPackageName()
-      );
-    camera =
-      OpenCvCameraFactory
+        .getResources()
+        .getIdentifier(
+            "cameraMonitorViewId",
+            "id",
+            hardwareMap.appContext.getPackageName());
+    camera = OpenCvCameraFactory
         .getInstance()
         .createWebcam(
-          hardwareMap.get(WebcamName.class, webcamName),
-          cameraMonitorViewId
-        );
+            hardwareMap.get(WebcamName.class, webcamName),
+            cameraMonitorViewId);
     sleeveDetection = new SleeveDetection();
     camera.setPipeline(sleeveDetection);
 
     camera.openCameraDeviceAsync(
-      new OpenCvCamera.AsyncCameraOpenListener() {
-        @Override
-        public void onOpened() {
-          camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);/*
-           * SIDEWAYS_LEFT
-           * SIDEWAYS_RIGHT
-           * UPSIDE_DOWN
-           * UPRIGHT
-           * are the only valid values
-           */
-        }
+        new OpenCvCamera.AsyncCameraOpenListener() {
+          @Override
+          public void onOpened() {
+            camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);/*
+                                                                           * SIDEWAYS_LEFT
+                                                                           * SIDEWAYS_RIGHT
+                                                                           * UPSIDE_DOWN
+                                                                           * UPRIGHT
+                                                                           * are the only valid values
+                                                                           */
+          }
 
-        @Override
-        public void onError(int errorCode) {}
-      }
-    );
+          @Override
+          public void onError(int errorCode) {
+          }
+        });
 
     while (!isStarted()) {
       telemetry.addData("ROTATION: ", sleeveDetection.getPosition());
