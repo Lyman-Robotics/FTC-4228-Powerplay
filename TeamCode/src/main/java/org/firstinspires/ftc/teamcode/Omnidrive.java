@@ -43,7 +43,7 @@ public class Omnidrive extends LinearOpMode {
       } else if (gamepad1.left_bumper) {
         slowMode = false;
       }
-      speedScalar = slowMode ? 0.2 : 0.5; // used to be .65 for fast
+      speedScalar = slowMode ? 0.2 : 0.5; // used to be .5 for fast and before that .65
 
       double FRPower = ((-pivot + (vertical - horizontal)) * speedScalar);
       double BRPower = ((-pivot + vertical + horizontal) * speedScalar);
