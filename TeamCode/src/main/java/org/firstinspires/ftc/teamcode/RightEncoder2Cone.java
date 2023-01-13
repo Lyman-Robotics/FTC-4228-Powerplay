@@ -11,9 +11,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // import org.openftc.easyopencv.OpenCvCameraFactory;
 // import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "Right Encoder Cone", group = "Autonomous")
-// @Disabled
-public class RightEncoderCone extends LinearOpMode {
+@Autonomous(name = "Right Encoder 2 Cones", group = "Autonomous")
+@Disabled //CODE IS DISABLED 😍💋😳
+public class RightEncoder2Cone extends LinearOpMode {
 
   @Override
   public void runOpMode() {
@@ -71,7 +71,7 @@ public class RightEncoderCone extends LinearOpMode {
 
       robot.ClawServo.setPosition(robot.servoOpenPos);
       sleep(300);
-      robot.encoderDrive(0.2,-100,-100,-100,-100); //,move back was -150 before
+      robot.encoderDrive(0.2,-224,-190,-197,-215); //,move back
       sleep(1000);
       robot.encoderDrive(0.2,448,-401,-440,433); //move away from pole
       sleep(2000);
