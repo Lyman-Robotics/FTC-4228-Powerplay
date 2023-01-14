@@ -105,7 +105,7 @@ public class RightEncoderCone extends LinearOpMode {
       } else if (robot.position.equals("Right")) {
         // ** Good
         robot.stopDrive();
-        robot.encoderDrive(0.2, 700, -661, -728, 791);
+        robot.encoderDrive(0.2, 780, -741, -808, 861);
         realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       }
