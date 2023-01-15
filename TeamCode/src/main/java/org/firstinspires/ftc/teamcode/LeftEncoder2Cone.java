@@ -11,9 +11,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // import org.openftc.easyopencv.OpenCvCameraFactory;
 // import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "rightencode crazyyyy", group = "Autonomous")
+@Autonomous(name = "leftencode crazyyyy", group = "Autonomous")
 // @Disabled
-public class RightEncoder2Cone extends LinearOpMode {
+public class LeftEncoder2Cone extends LinearOpMode {
 
   @Override
   public void runOpMode() {
@@ -51,12 +51,12 @@ public class RightEncoder2Cone extends LinearOpMode {
       realSleep(2000, "Raise slide", robot);
       robot.SlideMotor.setPower(0);
       realSleep(500, "Stop slide", robot);
-      encodeGood(0.35, 859, 747, 778, 862);
-      encodeGood(0.35, 509, 448, 466, 508);
+      encodeGood(0.2, 859, 747, 778, 862);
+      encodeGood(0.2, 509, 448, 466, 508);
       robot.stopDrive();
-      encodeGood(0.35, -509, -448, -466, -508);
+      encodeGood(0.2, -509, -448, -466, -508);
       robot.stopDrive(); //might need to add sleep
-      encodeGood(0.3,-448,401,440,-433); //move to pole
+      encodeGood(0.2,448,-401,-440,433); //move to pole
       encodeGood(0.2,224,190,197,215); //go forwdard
       robot.stopDrive();
       robot.SlideMotor.setPower(robot.slidePowerDown);
@@ -65,15 +65,16 @@ public class RightEncoder2Cone extends LinearOpMode {
 
       robot.ClawServo.setPosition(robot.servoOpenPos);
       sleep(300);
-      encodeGood(0.2,-100,-100,-100,-100); //,move back was -150 before
-      encodeGood(0.2,448,-401,-440,433); //move away from pole
+      encodeGood(0.2,-100,-100,-100,-100); //,move back was -150 bnefore
+      encodeGood(0.2,-448,401,440,-433); //move away from pole
 
-      //NEW CODE STARTS HERE
+
+            //NEW CODE STARTS HERE
       encodeGood(0.3,200,200,200,200); //move forward, in line with stack
 
 
-      //turn right
-      encodeGood(0.2, 1000, 1000, -1000, -1000); //rotate right 90 degrees, facing stack
+      //rotate left 90 degrees, facing stack
+      encodeGood(0.2, -1000, -1000, 1000, 1000);
 
       //move forward
       encodeGood(0.4, 1000, 1000, 1000, 1000); //move forward just away from stack
@@ -93,7 +94,7 @@ public class RightEncoder2Cone extends LinearOpMode {
       encodeGood(0.3, -1000, -1000, -1000, -1000); //move back far away from stack
 
       //rotate left
-      encodeGood(0.2, -1000, -1000, 1000, 1000); //rotate left 90 degrees, facing high pole
+      encodeGood(0.2, 1000, 1000, -1000, -1000); //rotate right 90 degrees, facing high pole
 
       //move forward
       encodeGood(0.2, 100, 100, 100, 100); //move forward just away from high pole
@@ -110,7 +111,7 @@ public class RightEncoder2Cone extends LinearOpMode {
       encodeGood(0.2, -100, -100, -100, -100); //move back with claw in stack
 
       //rotate right
-      encodeGood(0.2, 1000, 1000, -1000, -1000); //rotate right 90 degrees, facing stack
+      encodeGood(0.2, -1000, -1000, 1000, 1000); //rotate left 90 degrees, facing stack
 
       //move to stack
       encodeGood(0.4, 1000, 1000, 1000, 1000); //move forward just away from stack
@@ -129,8 +130,8 @@ public class RightEncoder2Cone extends LinearOpMode {
 
       encodeGood(0.3, -1000, -1000, -1000, -1000); //move back far away from stack
 
-      //rotate left
-      encodeGood(0.2, -1000, -1000, 1000, 1000); //rotate left 90 degrees, facing high pole
+      //rotate right
+      encodeGood(0.2, 1000, 1000, -1000, -1000); //rotate right 90 degrees, facing high pole
 
       //move forward
       encodeGood(0.2, 100, 100, 100, 100); //move forward just away from high pole
@@ -205,7 +206,7 @@ public class RightEncoder2Cone extends LinearOpMode {
     robot.setDrivePower(power, power, power, power);
     while (opModeIsActive() && robot.BLDrive.isBusy() && robot.FRDrive.isBusy())
     {
-      //do nothing or put idle if bad thing happen
+      //do nothing or put idle() if bad thing happen
     }
     sleep(15); //just in case motors decide to wibble wobble or something
     robot.setDrivePower(0,0,0,0);
