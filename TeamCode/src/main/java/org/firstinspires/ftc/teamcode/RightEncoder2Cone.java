@@ -207,7 +207,7 @@ public class RightEncoder2Cone extends LinearOpMode {
     {
       //do nothing or put idle if bad thing happen
     }
-    sleep(15); //just in case motors decide to wibble wobble or something
+    sleep(300); //just in case motors decide to wibble wobble or something
     robot.setDrivePower(0,0,0,0);
   }
 }
