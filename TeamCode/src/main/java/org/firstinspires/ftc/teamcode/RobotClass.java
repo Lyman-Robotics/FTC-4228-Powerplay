@@ -225,13 +225,50 @@ public class RobotClass extends LinearOpMode {
     setDrivePower(power, power, power, power);
     while (
       FLDrive.isBusy() ||
-      FRDrive.isBusy() ||
+      FRDrive.isBusy() &&
       BLDrive.isBusy() ||
       BRDrive.isBusy()
     ) {}
     // sleep(20);
     stopDrive();
     // sleep(25);
+  }
+
+    public void encoderDrive(
+    double power,
+    int FLPos,
+    int FRPos,
+    int BLPos,
+    int BRPos,
+    double slideSpeed,
+    double slideTime
+  ) {
+    double startTime = timeElapsed.seconds();
+    setPos(
+      FLDrive.getCurrentPosition() + FLPos,
+      FRDrive.getCurrentPosition() + FRPos,
+      BLDrive.getCurrentPosition() + BLPos,
+      BRDrive.getCurrentPosition() + BRPos
+    );
+    runToPos();
+    setDrivePower(power, power, power, power);
+    SlideMotor.setPower(slideSpeed);
+    while (
+      FLDrive.isBusy() ||
+      FRDrive.isBusy() &&
+      BLDrive.isBusy() ||
+      BRDrive.isBusy()
+    ) {
+      if (timeElapsed.seconds() > startTime + slideTime) {
+        SlideMotor.setPower(0);
+      } 
+    }
+    sleep(20); //for wobble ending porpuses
+    stopDrive();
+    while (timeElapsed.seconds() < startTime + slideTime) {
+        SlideMotor.setPower(slideSpeed);
+      } 
+    SlideMotor.setPower(0);
   }
 
   // ! DONT TOUCH THIS I NEEDED THIS FOR OPMODE FUNCTIONS

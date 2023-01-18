@@ -48,43 +48,27 @@ public class LeftEncoder2Cone extends LinearOpMode {
     while (opModeIsActive()) {
       robot.resetDrive();
       robot.ClawServo.setPosition(robot.servoClosePos);
-      sleep(1000);
-      robot.SlideMotor.setPower(robot.slidePowerUp);
-      sleep(2000);
-      robot.SlideMotor.setPower(0);
-      sleep(500);
-      robot.encoderDrive(0.3, 860, 750, 750, 860); // Forward to cone
-      robot.encoderDrive(0.3, 920, 1020, 1020, 920); // Push cone to halfway on field
-      robot.encoderDrive(0.3, -920, -1020, -1020, -920); // Reverse halfway push
-      robot.encoderDrive(0.3, 360, -325, -325, 360); // Go to front of pole
-      robot.encoderDrive(0.3, 190, 220, 220, 190); // Center cone on pole
-      robot.SlideMotor.setPower(robot.slidePowerDown); // Lower onto pole
-      sleep(1600);
+      sleep(800);
+      robot.encoderDrive(0.2, 860, 750, 750, 860, robot.slidePowerUp, 2000.0); // Forward to cone
+      robot.encoderDrive(0.2, 920, 1020, 1020, 920); // Push cone to halfway on field
+      robot.encoderDrive(0.2, -920, -1020, -1020, -920); // Reverse halfway push
+      robot.encoderDrive(0.2, 360, -325, -325, 360); // Go to front of pole
+      robot.encoderDrive(0.2, 190, 220, 220, 190); // Center cone on pole
+      robot.SlideMotor.setPower(robot.slidePowerDown - 0.1); // Lower onto pole
+      sleep(1333);
       robot.SlideMotor.setPower(0); // Stop lowering
       robot.ClawServo.setPosition(robot.servoOpenPos); // Open servo
-      sleep(300);
-      robot.encoderDrive(0.3, -170, -170, -170, -170); // Back away from pole
-      robot.encoderDrive(0.3, -400, 375, 375, -400); // Move left to sleeve spot
-      robot.encoderDrive(0.3, 770, 750, 750, 770); // Forward
-      robot.encoderDrive(0.3, -560, 620, -640, 620); // Turn to face stack
-      robot.SlideMotor.setPower(robot.slidePowerDown); // Lower onto stack height
-      sleep(1500);
-      robot.SlideMotor.setPower(0); // Stop lowering
+      sleep(150);
+      robot.encoderDrive(0.2, -170, -170, -170, -170); // Back away from pole
+      robot.encoderDrive(0.2, -400, 375, 375, -400); // Move left to sleeve spot
+      robot.encoderDrive(0.2, 770, 750, 750, 770); // Forward
+      robot.encoderDrive(0.2, -560, 620, -640, 620, robot.slidePowerDown, 1500.0); // Turn to face stack
       robot.encoderDrive(0.2, 800, 760, 760, 800); // Drive to stack
       robot.ClawServo.setPosition(robot.servoClosePos); // Close servo
       sleep(300);
       robot.SlideMotor.setPower(robot.slidePowerUp);
       sleep(2000);
       robot.SlideMotor.setPower(0);
-
-      // robot.encoderDrive(0.2, 1509, 1448, 1466, 1508);
-      // robot.encoderDrive(0.2, -1509, -1448, -1466, -1508);
-      // robot.encoderDrive(0.2, 448, -401, -440, 433);
-      // robot.encoderDrive(0.2, 224, 190, 197, 215);
-
-      // robot.encoderDrive(0.2, -100, -100, -100, -100); //,move back was -150 bnefore
-      // robot.encoderDrive(0.2, -448, 401, 440, -433); //move away from pole
-
       // if (robot.position.equals("Left")) { //shouldnt need to be changed much
       //   // ** Good
       //   robot.stopDrive();
