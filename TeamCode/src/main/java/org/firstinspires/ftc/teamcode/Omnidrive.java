@@ -72,7 +72,8 @@ public class Omnidrive extends LinearOpMode {
         clawClosed = true;
       }
       robot.ClawServo.setPosition(
-          clawClosed ? robot.servoClosePos : robot.servoOpenPos);
+        clawClosed ? robot.servoClosePos : robot.servoOpenPos
+      );
 
       // ** This is for testing purposes
       // if (gamepad2.x) {
@@ -94,8 +95,9 @@ public class Omnidrive extends LinearOpMode {
       telemetry.addData("Claw Servo Position", robot.ClawServo.getPosition());
       telemetry.addData("Slow Mode", slowMode);
       telemetry.addData(
-          "Slide Touch Sensor",
-          !(robot.SlideTouchSensor.getState()));
+        "Slide Touch Sensor",
+        !(robot.SlideTouchSensor.getState())
+      );
       telemetry.addData("Elapsed Time", robot.timeElapsed.toString());
 
       telemetry.addData("Front left/Right", "%4.2f, %4.2f", FLPower, FRPower);

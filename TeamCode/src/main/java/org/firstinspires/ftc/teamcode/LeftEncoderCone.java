@@ -60,9 +60,9 @@ public class LeftEncoderCone extends LinearOpMode {
       robot.encoderDrive(0.2, -509, -448, -466, -508);
       sleep(2000);
       robot.stopDrive(); //might need to add sleep
-      robot.encoderDrive(0.2,448,-401,-440,433); //move to pole
+      robot.encoderDrive(0.2, 448, -401, -440, 433); //move to pole
       sleep(1000);
-      robot.encoderDrive(0.2,224,190,197,215); //go forwdard
+      robot.encoderDrive(0.2, 224, 190, 197, 215); //go forwdard
       sleep(600);
       robot.stopDrive();
       robot.SlideMotor.setPower(robot.slidePowerDown);
@@ -71,11 +71,10 @@ public class LeftEncoderCone extends LinearOpMode {
 
       robot.ClawServo.setPosition(robot.servoOpenPos);
       sleep(300);
-      robot.encoderDrive(0.2,-100,-100,-100,-100); //,move back was -150 bnefore
+      robot.encoderDrive(0.2, -100, -100, -100, -100); //,move back was -150 bnefore
       sleep(1000);
-      robot.encoderDrive(0.2,-448,401,440,-433); //move away from pole
+      robot.encoderDrive(0.2, -448, 401, 440, -433); //move away from pole
       sleep(2000);
-
 
       // robot.encoderDrive(0.2,-278,458,350,-90); //move to pole
       // sleep(1000);

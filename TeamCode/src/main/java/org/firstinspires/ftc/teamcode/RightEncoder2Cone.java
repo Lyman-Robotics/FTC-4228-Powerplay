@@ -56,8 +56,8 @@ public class RightEncoder2Cone extends LinearOpMode {
       robot.stopDrive();
       encodeGood(0.35, -509, -448, -466, -508);
       robot.stopDrive(); //might need to add sleep
-      encodeGood(0.3,-448,401,440,-433); //move to pole
-      encodeGood(0.2,224,190,197,215); //go forwdard
+      encodeGood(0.3, -448, 401, 440, -433); //move to pole
+      encodeGood(0.2, 224, 190, 197, 215); //go forwdard
       robot.stopDrive();
       robot.SlideMotor.setPower(robot.slidePowerDown);
       sleep(1500);
@@ -65,12 +65,11 @@ public class RightEncoder2Cone extends LinearOpMode {
 
       robot.ClawServo.setPosition(robot.servoOpenPos);
       sleep(300);
-      encodeGood(0.2,-100,-100,-100,-100); //,move back was -150 before
-      encodeGood(0.2,448,-401,-440,433); //move away from pole
+      encodeGood(0.2, -100, -100, -100, -100); //,move back was -150 before
+      encodeGood(0.2, 448, -401, -440, 433); //move away from pole
 
       //NEW CODE STARTS HERE
-      encodeGood(0.3,200,200,200,200); //move forward, in line with stack
-
+      encodeGood(0.3, 200, 200, 200, 200); //move forward, in line with stack
 
       //turn right
       encodeGood(0.2, 1000, 1000, -1000, -1000); //rotate right 90 degrees, facing stack
@@ -116,7 +115,7 @@ public class RightEncoder2Cone extends LinearOpMode {
       encodeGood(0.4, 1000, 1000, 1000, 1000); //move forward just away from stack
       encodeGood(0.2, 200, 200, 200, 200); //move forward with claw in stack
 
-           //grab stack
+      //grab stack
       robot.ClawServo.setPosition(robot.servoClosePos);
       sleep(300);
 
@@ -145,7 +144,6 @@ public class RightEncoder2Cone extends LinearOpMode {
 
       //move back
       encodeGood(0.2, -100, -100, -100, -100); //move back with claw in stack
-
 
       //NEW CODE ENDS HERE
 
@@ -188,8 +186,9 @@ public class RightEncoder2Cone extends LinearOpMode {
     telemetry.addData("BR Encoder", robot.BRDrive.getCurrentPosition());
     telemetry.update();
   }
-      //tedt so we don need sleep, motors should say "im done" by themselves   
-    public void encodeGood( //might need to remove some robot. if thing die
+
+  //tedt so we don need sleep, motors should say "im done" by themselves
+  public void encodeGood( //might need to remove some robot. if thing die
     double power,
     int FLPos,
     int FRPos,
@@ -203,11 +202,12 @@ public class RightEncoder2Cone extends LinearOpMode {
       robot.BRDrive.getCurrentPosition() + BRPos
     );
     robot.setDrivePower(power, power, power, power);
-    while (opModeIsActive() && robot.BLDrive.isBusy() && robot.FRDrive.isBusy())
-    {
+    while (
+      opModeIsActive() && robot.BLDrive.isBusy() && robot.FRDrive.isBusy()
+    ) {
       //do nothing or put idle if bad thing happen
     }
     sleep(300); //just in case motors decide to wibble wobble or something
-    robot.setDrivePower(0,0,0,0);
+    robot.setDrivePower(0, 0, 0, 0);
   }
 }
