@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -22,7 +23,9 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
 // ! npx prettier --write "TeamCode\src\main\java\org\firstinspires\ftc\teamcode/*.java"
 
-public class RobotClass {
+@Autonomous(name = "DONT TOUCH", group = "CLASS")
+@Disabled
+public class RobotClass extends LinearOpMode {
 
   // ** Declare OpMode members
   public DcMotor FLDrive;
@@ -220,5 +223,20 @@ public class RobotClass {
     );
     runToPos();
     setDrivePower(power, power, power, power);
+    while (
+      FLDrive.isBusy() ||
+      FRDrive.isBusy() ||
+      BLDrive.isBusy() ||
+      BRDrive.isBusy()
+    ) {}
+    // sleep(20);
+    stopDrive();
+    // sleep(25);
+  }
+
+  // ! DONT TOUCH THIS I NEEDED THIS FOR OPMODE FUNCTIONS
+  @Override
+  public void runOpMode() {
+    sleep(999999);
   }
 }
