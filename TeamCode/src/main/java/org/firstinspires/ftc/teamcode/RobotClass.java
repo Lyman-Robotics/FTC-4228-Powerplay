@@ -234,7 +234,7 @@ public class RobotClass extends LinearOpMode {
     // sleep(25);
   }
 
-    public void encoderDrive(
+  public void encoderDrive(
     double power,
     int FLPos,
     int FRPos,
@@ -243,7 +243,7 @@ public class RobotClass extends LinearOpMode {
     double slideSpeed,
     double slideTime
   ) {
-    double startTime = timeElapsed.seconds();
+    double startTime = timeElapsed.milliseconds();
     setPos(
       FLDrive.getCurrentPosition() + FLPos,
       FRDrive.getCurrentPosition() + FRPos,
@@ -259,15 +259,16 @@ public class RobotClass extends LinearOpMode {
       BLDrive.isBusy() ||
       BRDrive.isBusy()
     ) {
-      if (timeElapsed.seconds() > startTime + slideTime) {
+      if (timeElapsed.milliseconds() >= startTime + slideTime) {
         SlideMotor.setPower(0);
-      } 
+      }
     }
+    SlideMotor.setPower(0);
     sleep(20); //for wobble ending porpuses
     stopDrive();
-    while (timeElapsed.seconds() < startTime + slideTime) {
-        SlideMotor.setPower(slideSpeed);
-      } 
+    while (timeElapsed.milliseconds() < startTime + slideTime) {
+      SlideMotor.setPower(slideSpeed);
+    }
     SlideMotor.setPower(0);
   }
 
