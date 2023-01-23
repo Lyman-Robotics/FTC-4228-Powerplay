@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // import org.openftc.easyopencv.OpenCvCameraFactory;
 // import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "Left Encoder 2+ Cone", group = "Autonomous")
+@Autonomous(name = "Left Far High", group = "Autonomous")
 // @Disabled
 public class LeftEncoder2Cone extends LinearOpMode {
 
@@ -48,9 +48,9 @@ public class LeftEncoder2Cone extends LinearOpMode {
     while (opModeIsActive()) {
       robot.resetDrive();
       robot.ClawServo.setPosition(robot.servoClosePos);
-      sleep(500);
+      sleep(999);
       robot.encoderDrive(
-        0.3,
+        0.26,
         1780,
         1770,
         1770,
@@ -59,45 +59,13 @@ public class LeftEncoder2Cone extends LinearOpMode {
         2000.0
       ); // Forward to cone (used to be 2000)
       robot.encoderDrive(0.2, -180, -170, -170, -180); // Back away from cone
-      robot.encoderDrive(0.2, 410, -340, -340, 410); // Omni to pole
-      robot.encoderDrive(0.2, 50, 50, 50, 50); // Forward to pole
+      robot.encoderDrive(0.2, 420, -420, -420, 420); // Omni to pole
+      robot.encoderDrive(0.2, 90, 90, 90, 90); // Forward to pole
       robot.SlideMotor.setPower(robot.slidePowerDown - 0.1); // Lower onto pole
       sleep(700);
       robot.SlideMotor.setPower(0); // Stop lowering
       robot.ClawServo.setPosition(robot.servoOpenPos); // Open servo
-      robot.encoderDrive(
-        0.2,
-        -120,
-        -120,
-        -120,
-        -120,
-        robot.slidePowerDown,
-        600.0
-      ); // Back up and lower stack
-      robot.encoderDrive(
-        0.2,
-        -560,
-        620,
-        -640,
-        620,
-        robot.slidePowerDown,
-        1600.0
-      ); // Turn to face stack
-      robot.encoderDrive(0.2, 1200, 1160, 1160, 1200); // Drive to stack
-      robot.ClawServo.setPosition(robot.servoClosePos); // Close servo
-      sleep(300);
-      robot.SlideMotor.setPower(robot.slidePowerUp);
-      sleep(1500);
-      robot.SlideMotor.setPower(0);
-      robot.encoderDrive(0.2, -1200, -1160, -1160, -1200);
-      robot.encoderDrive(
-        0.2,
-        560,
-        -620,
-        640,
-        -620
-      ); // Turn to face stack
-       // Drive to stack
+      robot.encoderDrive(0.2, -90, -90, -90, -90); // Back from pole
 
       // sleep(150);
 
@@ -128,20 +96,22 @@ public class LeftEncoder2Cone extends LinearOpMode {
       // sleep(2000);
       // robot.SlideMotor.setPower(0);
 
-      // if (robot.position.equals("Left")) { //shouldnt need to be changed much
+       if (robot.position.equals("Left")) { //shouldnt need to be changed much
       //   // ** Good
-      //   robot.stopDrive();
-      //   robot.encoderDrive(0.2, -768, 711, 835, -822); // last one! :D
-      //   robot.stopDrive();
-      // } else if (robot.position.equals("Center")) {
+         robot.stopDrive();
+          robot.encoderDrive(0.2, -471, 395, 445, -461);
+          robot.encoderDrive(0.2, -743, 653, 665, -691);
+         robot.stopDrive();
+       } else if (robot.position.equals("Center")) {
       //   // ** Good
-      //   robot.stopDrive();
-      // } else if (robot.position.equals("Right")) {
+          robot.encoderDrive(0.2, -471, 395, 445, -461);
+         robot.stopDrive();
+       } else if (robot.position.equals("Right")) {
       //   // ** Good
-      //   robot.stopDrive();
-      //   robot.encoderDrive(0.2, 780, -741, -808, 861);
-      //   robot.stopDrive();
-      // }
+         robot.stopDrive();
+          robot.encoderDrive(0.2, -768, 711, 835, -822); // last one! :D
+         robot.stopDrive();
+       }
 
       robot.stopDrive();
       realSleep(9999999, "Done", robot);
