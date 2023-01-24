@@ -59,12 +59,12 @@ public class LeftEncoder2Cone extends LinearOpMode {
           2000.0); // Forward to cone (used to be 2000)
       robot.encoderDrive(0.2, -180, -170, -170, -180); // Back away from cone
       robot.encoderDrive(0.2, 420, -420, -420, 420); // Omni to pole
-      robot.encoderDrive(0.2, 90, 90, 90, 90); // Forward to pole
+      robot.encoderDrive(0.2, 100, 100, 100, 100); // Forward to pole
       robot.SlideMotor.setPower(robot.slidePowerDown - 0.1); // Lower onto pole
       sleep(700);
       robot.SlideMotor.setPower(0); // Stop lowering
       robot.ClawServo.setPosition(robot.servoOpenPos); // Open servo
-      robot.encoderDrive(0.2, -90, -90, -90, -90); // Back from pole
+      robot.encoderDrive(0.2, -100, -100, -100, -100); // Back from pole
 
       // sleep(150);
 
@@ -95,20 +95,20 @@ public class LeftEncoder2Cone extends LinearOpMode {
       // sleep(2000);
       // robot.SlideMotor.setPower(0);
 
-      if (robot.position.equals("Left")) { // shouldnt need to be changed much
-        // // ** Good
-        robot.stopDrive();
-        robot.encoderDrive(0.2, -471, 395, 445, -461);
-        robot.encoderDrive(0.2, -743, 653, 665, -691);
-        robot.stopDrive();
-      } else if (robot.position.equals("Center")) {
-        // // ** Good
-        robot.encoderDrive(0.2, -471, 395, 445, -461);
-        robot.stopDrive();
-      } else if (robot.position.equals("Right")) {
-        // // ** Good
+      if (robot.position.equals("Left")) {
+        // ** Good
         robot.stopDrive();
         robot.encoderDrive(0.2, -768, 711, 835, -822); // last one! :D
+        // realSleep(2900, "omni to pole", robot);
+        robot.stopDrive();
+      } else if (robot.position.equals("Center")) {
+        // ** Good
+        robot.stopDrive();
+      } else if (robot.position.equals("Right")) {
+        // ** Good
+        robot.stopDrive();
+        robot.encoderDrive(0.2, 740, -701, -768, 831);
+        // realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       }
 
