@@ -104,33 +104,30 @@ public class RobotClass extends LinearOpMode {
     }
 
     int cameraMonitorViewId = hwMap.appContext
-      .getResources()
-      .getIdentifier(
-        "cameraMonitorViewId",
-        "id",
-        hwMap.appContext.getPackageName()
-      );
-    camera =
-      OpenCvCameraFactory
+        .getResources()
+        .getIdentifier(
+            "cameraMonitorViewId",
+            "id",
+            hwMap.appContext.getPackageName());
+    camera = OpenCvCameraFactory
         .getInstance()
         .createWebcam(
-          hwMap.get(WebcamName.class, webcamName),
-          cameraMonitorViewId
-        );
+            hwMap.get(WebcamName.class, webcamName),
+            cameraMonitorViewId);
     sleeveDetection = new SleeveDetection();
     camera.setPipeline(sleeveDetection);
 
     camera.openCameraDeviceAsync(
-      new OpenCvCamera.AsyncCameraOpenListener() {
-        @Override
-        public void onOpened() {
-          camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
-        }
+        new OpenCvCamera.AsyncCameraOpenListener() {
+          @Override
+          public void onOpened() {
+            camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
+          }
 
-        @Override
-        public void onError(int errorCode) {}
-      }
-    );
+          @Override
+          public void onError(int errorCode) {
+          }
+        });
 
     position = sleeveDetection.getPosition();
   }
@@ -209,62 +206,57 @@ public class RobotClass extends LinearOpMode {
   }
 
   public void encoderDrive(
-    double power,
-    int FLPos,
-    int FRPos,
-    int BLPos,
-    int BRPos
-  ) {
+      double power,
+      int FLPos,
+      int FRPos,
+      int BLPos,
+      int BRPos) {
     setPos(
-      FLDrive.getCurrentPosition() + FLPos,
-      FRDrive.getCurrentPosition() + FRPos,
-      BLDrive.getCurrentPosition() + BLPos,
-      BRDrive.getCurrentPosition() + BRPos
-    );
+        FLDrive.getCurrentPosition() + FLPos,
+        FRDrive.getCurrentPosition() + FRPos,
+        BLDrive.getCurrentPosition() + BLPos,
+        BRDrive.getCurrentPosition() + BRPos);
     runToPos();
     setDrivePower(power, power, power, power);
-    while (
-      FLDrive.isBusy() ||
-      FRDrive.isBusy() &&
-      BLDrive.isBusy() ||
-      BRDrive.isBusy()
-    ) {}
+    while (FLDrive.isBusy() ||
+        FRDrive.isBusy() &&
+            BLDrive.isBusy()
+        ||
+        BRDrive.isBusy()) {
+    }
     // sleep(20);
     stopDrive();
     // sleep(25);
   }
 
   public void encoderDrive(
-    double power,
-    int FLPos,
-    int FRPos,
-    int BLPos,
-    int BRPos,
-    double slideSpeed,
-    double slideTime
-  ) {
+      double power,
+      int FLPos,
+      int FRPos,
+      int BLPos,
+      int BRPos,
+      double slideSpeed,
+      double slideTime) {
     double startTime = timeElapsed.milliseconds();
     setPos(
-      FLDrive.getCurrentPosition() + FLPos,
-      FRDrive.getCurrentPosition() + FRPos,
-      BLDrive.getCurrentPosition() + BLPos,
-      BRDrive.getCurrentPosition() + BRPos
-    );
+        FLDrive.getCurrentPosition() + FLPos,
+        FRDrive.getCurrentPosition() + FRPos,
+        BLDrive.getCurrentPosition() + BLPos,
+        BRDrive.getCurrentPosition() + BRPos);
     runToPos();
     setDrivePower(power, power, power, power);
     SlideMotor.setPower(slideSpeed);
-    while (
-      FLDrive.isBusy() ||
-      FRDrive.isBusy() &&
-      BLDrive.isBusy() ||
-      BRDrive.isBusy()
-    ) {
+    while (FLDrive.isBusy() ||
+        FRDrive.isBusy() &&
+            BLDrive.isBusy()
+        ||
+        BRDrive.isBusy()) {
       if (timeElapsed.milliseconds() >= startTime + slideTime) {
         SlideMotor.setPower(0);
       }
     }
     SlideMotor.setPower(0);
-    sleep(20); //for wobble ending porpuses
+    sleep(20); // for wobble ending porpuses
     stopDrive();
     while (timeElapsed.milliseconds() < startTime + slideTime) {
       SlideMotor.setPower(slideSpeed);

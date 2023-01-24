@@ -52,18 +52,18 @@ public class RightEncoderCone extends LinearOpMode {
       robot.SlideMotor.setPower(0);
       realSleep(500, "Stop slide", robot);
       robot.encoderDrive(0.2, 859, 747, 778, 862);
-      //sleep(2000);
+      // sleep(2000);
       robot.encoderDrive(0.2, 509, 448, 466, 508);
-      //sleep(1000);
+      // sleep(1000);
       robot.stopDrive();
-      //sleep(1000);
+      // sleep(1000);
       robot.encoderDrive(0.2, -509, -448, -466, -508);
-      //sleep(2000);
-      robot.stopDrive(); //might need to add sleep
-      robot.encoderDrive(0.2, -448, 401, 440, -433); //move to pole
-     // sleep(1000);
-      robot.encoderDrive(0.2, 224, 190, 197, 215); //go forwdard
-      //sleep(600);
+      // sleep(2000);
+      robot.stopDrive(); // might need to add sleep
+      robot.encoderDrive(0.2, -448, 401, 440, -433); // move to pole
+      // sleep(1000);
+      robot.encoderDrive(0.2, 224, 190, 197, 215); // go forwdard
+      // sleep(600);
       robot.stopDrive();
       robot.SlideMotor.setPower(robot.slidePowerDown);
       sleep(1500);
@@ -71,10 +71,10 @@ public class RightEncoderCone extends LinearOpMode {
 
       robot.ClawServo.setPosition(robot.servoOpenPos);
       sleep(300);
-      robot.encoderDrive(0.2, -100, -100, -100, -100); //,move back was -150 before
-      //sleep(1000);
-      robot.encoderDrive(0.2, 448, -401, -440, 433); //move away from pole
-      //sleep(2000);
+      robot.encoderDrive(0.2, -100, -100, -100, -100); // ,move back was -150 before
+      // sleep(1000);
+      robot.encoderDrive(0.2, 448, -401, -440, 433); // move away from pole
+      // sleep(2000);
 
       // robot.encoderDrive(0.2,-278,458,350,-90); //move to pole
       // sleep(1000);
@@ -96,7 +96,7 @@ public class RightEncoderCone extends LinearOpMode {
         // ** Good
         robot.stopDrive();
         robot.encoderDrive(0.2, -768, 711, 835, -822); // last one! :D
-        //realSleep(2900, "omni to pole", robot);
+        // realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       } else if (robot.position.equals("Center")) {
         // ** Good
@@ -105,7 +105,7 @@ public class RightEncoderCone extends LinearOpMode {
         // ** Good
         robot.stopDrive();
         robot.encoderDrive(0.2, 780, -741, -808, 861);
-        //realSleep(2900, "omni to pole", robot);
+        // realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       }
       robot.stopDrive();

@@ -50,14 +50,13 @@ public class LeftEncoder2Cone extends LinearOpMode {
       robot.ClawServo.setPosition(robot.servoClosePos);
       sleep(999);
       robot.encoderDrive(
-        0.26,
-        1780,
-        1770,
-        1770,
-        1780,
-        robot.slidePowerUp,
-        2000.0
-      ); // Forward to cone (used to be 2000)
+          0.26,
+          1780,
+          1770,
+          1770,
+          1780,
+          robot.slidePowerUp,
+          2000.0); // Forward to cone (used to be 2000)
       robot.encoderDrive(0.2, -180, -170, -170, -180); // Back away from cone
       robot.encoderDrive(0.2, 420, -420, -420, 420); // Omni to pole
       robot.encoderDrive(0.2, 90, 90, 90, 90); // Forward to pole
@@ -81,13 +80,13 @@ public class LeftEncoder2Cone extends LinearOpMode {
       // robot.encoderDrive(0.2, -400, 375, 375, -400); // Move left to sleeve spot
       // robot.encoderDrive(0.2, 770, 750, 750, 770); // Forward
       // robot.encoderDrive(
-      //   0.2,
-      //   -560,
-      //   620,
-      //   -640,
-      //   620,
-      //   robot.slidePowerDown,
-      //   1500.0
+      // 0.2,
+      // -560,
+      // 620,
+      // -640,
+      // 620,
+      // robot.slidePowerDown,
+      // 1500.0
       // ); // Turn to face stack
       // robot.encoderDrive(0.2, 800, 760, 760, 800); // Drive to stack
       // robot.ClawServo.setPosition(robot.servoClosePos); // Close servo
@@ -96,22 +95,22 @@ public class LeftEncoder2Cone extends LinearOpMode {
       // sleep(2000);
       // robot.SlideMotor.setPower(0);
 
-       if (robot.position.equals("Left")) { //shouldnt need to be changed much
-      //   // ** Good
-         robot.stopDrive();
-          robot.encoderDrive(0.2, -471, 395, 445, -461);
-          robot.encoderDrive(0.2, -743, 653, 665, -691);
-         robot.stopDrive();
-       } else if (robot.position.equals("Center")) {
-      //   // ** Good
-          robot.encoderDrive(0.2, -471, 395, 445, -461);
-         robot.stopDrive();
-       } else if (robot.position.equals("Right")) {
-      //   // ** Good
-         robot.stopDrive();
-          robot.encoderDrive(0.2, -768, 711, 835, -822); // last one! :D
-         robot.stopDrive();
-       }
+      if (robot.position.equals("Left")) { // shouldnt need to be changed much
+        // // ** Good
+        robot.stopDrive();
+        robot.encoderDrive(0.2, -471, 395, 445, -461);
+        robot.encoderDrive(0.2, -743, 653, 665, -691);
+        robot.stopDrive();
+      } else if (robot.position.equals("Center")) {
+        // // ** Good
+        robot.encoderDrive(0.2, -471, 395, 445, -461);
+        robot.stopDrive();
+      } else if (robot.position.equals("Right")) {
+        // // ** Good
+        robot.stopDrive();
+        robot.encoderDrive(0.2, -768, 711, 835, -822); // last one! :D
+        robot.stopDrive();
+      }
 
       robot.stopDrive();
       realSleep(9999999, "Done", robot);
