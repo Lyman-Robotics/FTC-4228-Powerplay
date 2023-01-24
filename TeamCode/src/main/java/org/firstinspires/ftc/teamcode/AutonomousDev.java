@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @TeleOp(name = "Autonomous Dev", group = "Autonomous Dev")
+@Disabled
 public class AutonomousDev extends LinearOpMode {
 
   @Override
