@@ -11,9 +11,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // import org.openftc.easyopencv.OpenCvCameraFactory;
 // import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "Right Medium", group = "Autonomous")
+@Autonomous(name = "Left Close High", group = "Autonomous")
 // @Disabled
-public class RightEncoderCone extends LinearOpMode {
+public class LeftCloseHigh extends LinearOpMode {
 
   @Override
   public void runOpMode() {
@@ -60,7 +60,9 @@ public class RightEncoderCone extends LinearOpMode {
       robot.encoderDrive(0.2, -509, -448, -466, -508);
       // sleep(2000);
       robot.stopDrive(); // might need to add sleep
-      robot.encoderDrive(0.2, -448, 401, 440, -433); // move to pole
+      robot.encoderDrive(0.2, 448, -401, -440, 433); // move to pole
+      robot.encoderDrive(0.2, 448, -401, -440, 433); // move to pole
+
       // sleep(1000);
       robot.encoderDrive(0.2, 224, 190, 197, 215); // go forwdard
       // sleep(600);
@@ -71,9 +73,10 @@ public class RightEncoderCone extends LinearOpMode {
 
       robot.ClawServo.setPosition(robot.servoOpenPos);
       sleep(300);
-      robot.encoderDrive(0.2, -100, -100, -100, -100); // ,move back was -150 before
+      robot.encoderDrive(0.2, -100, -100, -100, -100); // ,move back was -150 bnefore
       // sleep(1000);
-      robot.encoderDrive(0.2, 448, -401, -440, 433); // move away from pole
+      robot.encoderDrive(0.2, -448, 401, 440, -433); // move away from pole
+      robot.encoderDrive(0.2, -448, 401, 440, -433); // move away from pole
       // sleep(2000);
 
       // robot.encoderDrive(0.2,-278,458,350,-90); //move to pole
@@ -104,7 +107,7 @@ public class RightEncoderCone extends LinearOpMode {
       } else if (robot.position.equals("Right")) {
         // ** Good
         robot.stopDrive();
-        robot.encoderDrive(0.2, 780, -741, -808, 861);
+        robot.encoderDrive(0.2, 740, -701, -768, 831);
         // realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       }

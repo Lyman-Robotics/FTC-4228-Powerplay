@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // import org.openftc.easyopencv.OpenCvCameraFactory;
 // import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "Left Encoder Cone", group = "Autonomous")
+@Autonomous(name = "Left Medium", group = "Autonomous")
 // @Disabled
 public class LeftEncoderCone extends LinearOpMode {
 

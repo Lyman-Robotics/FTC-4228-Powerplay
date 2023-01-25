@@ -11,9 +11,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // import org.openftc.easyopencv.OpenCvCameraFactory;
 // import org.openftc.easyopencv.OpenCvCameraRotation;
 
-@Autonomous(name = "Right Medium", group = "Autonomous")
+@Autonomous(name = "Right Close High", group = "Autonomous")
 // @Disabled
-public class RightEncoderCone extends LinearOpMode {
+public class RightCloseHigh extends LinearOpMode {
 
   @Override
   public void runOpMode() {
@@ -61,6 +61,8 @@ public class RightEncoderCone extends LinearOpMode {
       // sleep(2000);
       robot.stopDrive(); // might need to add sleep
       robot.encoderDrive(0.2, -448, 401, 440, -433); // move to pole
+      robot.encoderDrive(0.2, -448, 401, 440, -433); // move to high
+
       // sleep(1000);
       robot.encoderDrive(0.2, 224, 190, 197, 215); // go forwdard
       // sleep(600);
@@ -74,6 +76,8 @@ public class RightEncoderCone extends LinearOpMode {
       robot.encoderDrive(0.2, -100, -100, -100, -100); // ,move back was -150 before
       // sleep(1000);
       robot.encoderDrive(0.2, 448, -401, -440, 433); // move away from pole
+      robot.encoderDrive(0.2, 448, -401, -440, 433); // move to start
+
       // sleep(2000);
 
       // robot.encoderDrive(0.2,-278,458,350,-90); //move to pole
