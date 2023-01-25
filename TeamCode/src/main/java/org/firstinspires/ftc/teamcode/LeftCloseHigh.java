@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // import org.openftc.easyopencv.OpenCvCameraRotation;
 
 @Autonomous(name = "Left Close High", group = "Autonomous")
-// @Disabled
+@Disabled
 public class LeftCloseHigh extends LinearOpMode {
 
   @Override

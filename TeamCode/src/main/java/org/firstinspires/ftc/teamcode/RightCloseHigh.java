@@ -48,7 +48,7 @@ public class RightCloseHigh extends LinearOpMode {
       robot.ClawServo.setPosition(robot.servoClosePos);
       realSleep(1000, "Close claw", robot);
       robot.SlideMotor.setPower(robot.slidePowerUp);
-      realSleep(2000, "Raise slide", robot);
+      realSleep(2400, "Raise slide", robot);
       robot.SlideMotor.setPower(0);
       realSleep(500, "Stop slide", robot);
       robot.encoderDrive(0.2, 859, 747, 778, 862);
@@ -60,11 +60,9 @@ public class RightCloseHigh extends LinearOpMode {
       robot.encoderDrive(0.2, -509, -448, -466, -508);
       // sleep(2000);
       robot.stopDrive(); // might need to add sleep
-      robot.encoderDrive(0.2, -448, 401, 440, -433); // move to pole
-      robot.encoderDrive(0.2, -448, 401, 440, -433); // move to high
-
+      robot.encoderDrive(0.2,-1140,1140,1140,-1140);
+      robot.encoderDrive(0.2,130,130,130,130);
       // sleep(1000);
-      robot.encoderDrive(0.2, 224, 190, 197, 215); // go forwdard
       // sleep(600);
       robot.stopDrive();
       robot.SlideMotor.setPower(robot.slidePowerDown);
@@ -73,11 +71,8 @@ public class RightCloseHigh extends LinearOpMode {
 
       robot.ClawServo.setPosition(robot.servoOpenPos);
       sleep(300);
-      robot.encoderDrive(0.2, -100, -100, -100, -100); // ,move back was -150 before
+      robot.encoderDrive(0.2, -80, -80, -80, -80); // ,move back was -150 before
       // sleep(1000);
-      robot.encoderDrive(0.2, 448, -401, -440, 433); // move away from pole
-      robot.encoderDrive(0.2, 448, -401, -440, 433); // move to start
-
       // sleep(2000);
 
       // robot.encoderDrive(0.2,-278,458,350,-90); //move to pole
@@ -99,16 +94,16 @@ public class RightCloseHigh extends LinearOpMode {
       if (robot.position.equals("Left")) {
         // ** Good
         robot.stopDrive();
-        robot.encoderDrive(0.2, -768, 711, 835, -822); // last one! :D
+        robot.encoderDrive(0.2, 410, -410, -410, 410); // last one! :D
         // realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       } else if (robot.position.equals("Center")) {
-        // ** Good
+        robot.encoderDrive(0.2, 1100, -1100, -1100, 1100); // last one! :D
         robot.stopDrive();
       } else if (robot.position.equals("Right")) {
         // ** Good
         robot.stopDrive();
-        robot.encoderDrive(0.2, 780, -741, -808, 861);
+        robot.encoderDrive(0.2, 2000, -2000, -2000, 2000); // last one! :D
         // realSleep(2900, "omni to pole", robot);
         robot.stopDrive();
       }
