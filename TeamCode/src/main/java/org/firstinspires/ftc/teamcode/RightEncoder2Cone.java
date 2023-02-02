@@ -27,7 +27,7 @@ public class RightEncoder2Cone extends LinearOpMode {
     robot.BRDrive.setDirection(DcMotor.Direction.FORWARD);
     robot.FLDrive.setDirection(DcMotor.Direction.REVERSE);
     robot.FRDrive.setDirection(DcMotor.Direction.REVERSE);
-    robot.BLDrive.setDirection(DcMotor.Direction.FORWARD);
+    robot.BLDrive.setDirection(DcMotor.Direction.FORWARD); //Jackson was here lmao
 
     robot.setToEncoderMode();
     robot.resetDrive();
@@ -56,13 +56,13 @@ public class RightEncoder2Cone extends LinearOpMode {
           robot.slidePowerUp,
           2200.0); // Forward to cone (used to be 2000)
       robot.encoderDrive(0.2, -180, -170, -170, -180); // Back away from cone
-      robot.encoderDrive(0.2, -390, 390, 390, -390); // Omni to pole
-      robot.encoderDrive(0.2, 70, 70, 70, 70); // Forward to pole
+      robot.encoderDrive(0.2, -364, 364, 364, -364); // Omni to pole (was 390)
+      robot.encoderDrive(0.2, 99, 99, 99, 99); // Forward to pole
       robot.SlideMotor.setPower(robot.slidePowerDown - 0.1); // Lower onto pole
       sleep(900);
       robot.SlideMotor.setPower(0); // Stop lowering
       robot.ClawServo.setPosition(robot.servoOpenPos); // Open servo
-      robot.encoderDrive(0.2, -70, -70, -70, -70); // Back from pole
+      robot.encoderDrive(0.2, -99, -99, -99, -99); // Back from pole
 
       // sleep(150);
 

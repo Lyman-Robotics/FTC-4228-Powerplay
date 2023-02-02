@@ -58,13 +58,13 @@ public class LeftEncoder2Cone extends LinearOpMode {
           robot.slidePowerUp,
           2200.0); // Forward to cone (used to be 2000)
       robot.encoderDrive(0.2, -180, -170, -170, -180); // Back away from cone
-      robot.encoderDrive(0.2, 420, -420, -420, 420); // Omni to pole
-      robot.encoderDrive(0.2, 100, 100, 100, 100); // Forward to pole
+      robot.encoderDrive(0.2, 400, -400, -400, 400); // Omni to pole (was 420)
+      robot.encoderDrive(0.2, 120, 120, 120, 120); // Forward to pole
       robot.SlideMotor.setPower(robot.slidePowerDown - 0.1); // Lower onto pole
       sleep(900);
       robot.SlideMotor.setPower(0); // Stop lowering
       robot.ClawServo.setPosition(robot.servoOpenPos); // Open servo
-      robot.encoderDrive(0.2, -100, -100, -100, -100); // Back from pole
+      robot.encoderDrive(0.2, -120, -120, -120, -120); // Back from pole
 
       // sleep(150);
 
