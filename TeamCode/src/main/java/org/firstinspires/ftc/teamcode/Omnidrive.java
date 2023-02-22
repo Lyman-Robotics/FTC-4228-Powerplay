@@ -74,7 +74,7 @@ public class Omnidrive extends LinearOpMode {
       robot.ClawServo.setPosition(
           clawClosed ? robot.servoClosePos : robot.servoOpenPos);
 
-      // ** This is for testing purposes
+      //** This is for testing purposes
       // if (gamepad2.x) {
       // robot.ClawServo.setPosition(robot.ClawServo.getPosition() + 0.001);
       // } else if (gamepad2.y) {

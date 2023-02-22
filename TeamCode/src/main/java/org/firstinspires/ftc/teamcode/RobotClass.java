@@ -45,8 +45,8 @@ public class RobotClass extends LinearOpMode {
   public float omniLeftVal = (float) (3.0 * (Math.PI / 2.0));
   public double slidePowerUp = 1;
   public double slidePowerDown = -0.5;
-  public float servoOpenPos = (float) 0.7494;
-  public float servoClosePos = (float) 0.355;
+  public float servoOpenPos = (float) 0.7477777777;
+  public float servoClosePos = (float) 0.338333333;
 
   public int TickCounts = 1120;
   public double circumference = 3.1415926535 * 3.1496063; // 8cm lappy 10cm scrappy 3.149 is the 8cm to in
