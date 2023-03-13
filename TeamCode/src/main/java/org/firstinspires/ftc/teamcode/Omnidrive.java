@@ -35,7 +35,8 @@ public class Omnidrive extends LinearOpMode {
       double max;
 
       vertical = gamepad1.left_stick_y;
-      horizontal = -gamepad1.left_stick_x;
+      // horizontal = -gamepad1.left_stick_x; for when we actually have omni
+      horizontal = 0;
       pivot = -gamepad1.right_stick_x;
 
       if (gamepad1.right_bumper) {
@@ -43,8 +44,14 @@ public class Omnidrive extends LinearOpMode {
       } else if (gamepad1.left_bumper) {
         slowMode = false;
       }
-      speedScalar = slowMode ? 0.2 : 0.5; // used to be .5 for fast and before that .65
 
+      if (gamepad1.left_trigger > 0)
+      {
+        speedScalar = 1;
+      }
+      else{
+            speedScalar = slowMode ? 0.2 : 0.5; // used to be .5 for fast and before that .65
+      }
       double FRPower = ((-pivot + (vertical - horizontal)) * speedScalar);
       double BRPower = ((-pivot + vertical + horizontal) * speedScalar);
       double FLPower = ((pivot + vertical + horizontal) * speedScalar);
@@ -66,9 +73,9 @@ public class Omnidrive extends LinearOpMode {
       robot.setDrivePower(FLPower, FRPower, BLPower, BRPower);
 
       // ** Actual Servo
-      if (gamepad2.x) {
+      if (gamepad1.x) {
         clawClosed = false;
-      } else if (gamepad2.y) {
+      } else if (gamepad1.y) {
         clawClosed = true;
       }
       robot.ClawServo.setPosition(
@@ -82,9 +89,9 @@ public class Omnidrive extends LinearOpMode {
       // }
 
       // Slide on gamepad
-      if (gamepad2.a) {
+      if (gamepad1.a) {
         robot.SlideMotor.setPower(robot.slidePowerUp);
-      } else if (gamepad2.b && robot.SlideTouchSensor.getState()) {
+      } else if (gamepad1.b && robot.SlideTouchSensor.getState()) {
         robot.SlideMotor.setPower(robot.slidePowerDown);
       } else {
         robot.SlideMotor.setPower(0);

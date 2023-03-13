@@ -39,6 +39,7 @@ public class LeftEncoder2Cone extends LinearOpMode {
       }
       telemetry.update();
       robot.position = robot.sleeveDetection.getPosition();
+      robot.ClawServo.setPosition(robot.servoClosePos);
     }
 
     // ! Runs until the end of the match after play is pressed
@@ -48,7 +49,7 @@ public class LeftEncoder2Cone extends LinearOpMode {
     while (opModeIsActive()) {
       robot.resetDrive();
       robot.ClawServo.setPosition(robot.servoClosePos);
-      sleep(999);
+      sleep(100);
       robot.encoderDrive(
           0.26,
           1780,
@@ -66,34 +67,34 @@ public class LeftEncoder2Cone extends LinearOpMode {
       robot.ClawServo.setPosition(robot.servoOpenPos); // Open servo
       robot.encoderDrive(0.2, -120, -120, -120, -120); // Back from pole
 
-      // sleep(150);
 
-      // robot.encoderDrive(0.2, -920, -1020, -1020, -920); // Reverse halfway push
-      // robot.encoderDrive(0.2, 360, -325, -325, 360); // Go to front of pole
-      // robot.encoderDrive(0.2, 190, 220, 220, 190); // Center cone on pole
+
+
+      // //+1 Starts Here
       // robot.SlideMotor.setPower(robot.slidePowerDown - 0.1); // Lower onto pole
-      // sleep(1333);
+      // sleep(1000);
       // robot.SlideMotor.setPower(0); // Stop lowering
-      // robot.ClawServo.setPosition(robot.servoOpenPos); // Open servo
-      // sleep(150);
-      // robot.encoderDrive(0.2, -170, -170, -170, -170); // Back away from pole
-      // robot.encoderDrive(0.2, -400, 375, 375, -400); // Move left to sleeve spot
-      // robot.encoderDrive(0.2, 770, 750, 750, 770); // Forward
-      // robot.encoderDrive(
-      // 0.2,
-      // -560,
-      // 620,
-      // -640,
-      // 620,
-      // robot.slidePowerDown,
-      // 1500.0
-      // ); // Turn to face stack
-      // robot.encoderDrive(0.2, 800, 760, 760, 800); // Drive to stack
-      // robot.ClawServo.setPosition(robot.servoClosePos); // Close servo
+      // robot.encoderDrive(0.2,-645,640,-670,640); //was 650 all-around
+      // //start daniel code
+      // robot.encoderDrive(0.2,1166,1068,1128,1139, robot.slidePowerDown,600); //was 650 all-around
+      // sleep(99999);
+      // robot.SlideMotor.setPower(robot.slidePowerDown - 0.1); // Lower onto pole
+      // sleep(600);
+      // robot.SlideMotor.setPower(0); // Stop lowering
+      // robot.ClawServo.setPosition(robot.servoClosePos);
       // sleep(300);
       // robot.SlideMotor.setPower(robot.slidePowerUp);
-      // sleep(2000);
+      // sleep(300);
       // robot.SlideMotor.setPower(0);
+      // robot.encoderDrive(0.3,-1166,-1068,-1128,-1139, robot.slidePowerUp,600);
+      // robot.encoderDrive(0.2,645,-640,670,-640);
+      // robot.encoderDrive(0.2,100,100,100,100); 
+      // robot.ClawServo.setPosition(robot.servoOpenPos);
+      // sleep(100);
+
+
+
+ 
       if (robot.position.equals("Left")) {
         // ** Good
         robot.stopDrive();

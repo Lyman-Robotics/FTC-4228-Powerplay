@@ -43,8 +43,8 @@ public class RobotClass extends LinearOpMode {
 
   public float omniRightVal = (float) (Math.PI / 2.0);
   public float omniLeftVal = (float) (3.0 * (Math.PI / 2.0));
-  public double slidePowerUp = 1;
-  public double slidePowerDown = -0.5;
+  public double slidePowerUp = 0.4; 
+  public double slidePowerDown = -slidePowerUp;
   public float servoOpenPos = (float) 0.7477777777;
   public float servoClosePos = (float) 0.338333333;
 
