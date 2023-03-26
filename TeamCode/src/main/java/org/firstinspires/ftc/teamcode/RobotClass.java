@@ -32,6 +32,7 @@ public class RobotClass extends LinearOpMode {
   public DcMotor FRDrive;
   public DcMotor BLDrive;
   public DcMotor BRDrive;
+  public DcMotor Claw;
   public DcMotor SlideMotor;
   public Servo ClawServo;
   public DigitalChannel SlideTouchSensor;
@@ -70,6 +71,8 @@ public class RobotClass extends LinearOpMode {
     FRDrive = hwMap.get(DcMotor.class, "FRDrive");
     BLDrive = hwMap.get(DcMotor.class, "BLDrive");
     BRDrive = hwMap.get(DcMotor.class, "BRDrive");
+    Claw = hwMap.get(DcMotor.class, "Claw");
+
     SlideMotor = hwMap.get(DcMotor.class, "SlideMotor");
     ClawServo = hwMap.get(Servo.class, "ClawServo");
     SlideTouchSensor = hwMap.get(DigitalChannel.class, "SlideTouchSensor");
