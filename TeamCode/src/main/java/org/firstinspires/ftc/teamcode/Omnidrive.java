@@ -26,6 +26,9 @@ public class Omnidrive extends LinearOpMode {
     double speedScalar;
     boolean slowMode = false;
     boolean clawClosed = false;
+    boolean holdingObject = false;
+
+    robot.SlideMotor.setPower(0.4);
 
     // ! Runs until the end of the match after play is pressed
     waitForStart();
@@ -49,6 +52,17 @@ public class Omnidrive extends LinearOpMode {
       {
         speedScalar = 1;
       }
+      if (gamepad1.dpad_left)
+      {
+        holdingObject = true;
+      }
+      if (gamepad1.dpad_right)
+      {
+        holdingObject = false;
+      }
+
+
+
       else{
             speedScalar = slowMode ? 0.2 : 0.5; // used to be .5 for fast and before that .65
       }
@@ -81,6 +95,10 @@ public class Omnidrive extends LinearOpMode {
         robot.Claw.setPower(0.4);
       } else {
         robot.Claw.setPower(0);
+      }
+      if (holdingObject)
+      {
+        robot.Claw.setPower(0.4);
       }
       robot.ClawServo.setPosition(
           clawClosed ? robot.servoClosePos : robot.servoOpenPos);
