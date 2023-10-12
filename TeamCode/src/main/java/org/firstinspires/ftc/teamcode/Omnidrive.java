@@ -23,7 +23,7 @@ public class Omnidrive extends LinearOpMode {
     float vertical;
     float horizontal;
     float pivot;
-    double speedScalar;
+    double speedScalar=1.0;
     boolean slowMode = false;
     boolean clawClosed = false;
     boolean holdingObject = false;
@@ -46,26 +46,26 @@ public class Omnidrive extends LinearOpMode {
         slowMode = true;
       } else if (gamepad1.left_bumper) {
         slowMode = false;
+      }else{
+            speedScalar = slowMode ? 0.2 : 0.5; // used to be .5 for fast and before that .65
       }
-
       if (gamepad1.left_trigger > 0)
       {
         speedScalar = 1;
       }
+
       if (gamepad1.dpad_left)
       {
         holdingObject = true;
       }
-      if (gamepad1.dpad_right)
+      else if (gamepad1.dpad_right)
       {
         holdingObject = false;
       }
 
 
 
-      else{
-            speedScalar = slowMode ? 0.2 : 0.5; // used to be .5 for fast and before that .65
-      }
+      
       double FRPower = ((-pivot + (vertical - horizontal)) * speedScalar);
       double BRPower = ((-pivot + vertical + horizontal) * speedScalar);
       double FLPower = ((pivot + vertical + horizontal) * speedScalar);
@@ -98,7 +98,7 @@ public class Omnidrive extends LinearOpMode {
       }
       if (holdingObject)
       {
-        robot.Claw.setPower(0.4);
+        robot.Claw.setPower(-0.4);
       }
       robot.ClawServo.setPosition(
           clawClosed ? robot.servoClosePos : robot.servoOpenPos);
