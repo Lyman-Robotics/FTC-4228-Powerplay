@@ -60,8 +60,8 @@ public class RightCloseHigh extends LinearOpMode {
       robot.encoderDrive(0.2, -509, -448, -466, -508);
       // sleep(2000);
       robot.stopDrive(); // might need to add sleep
-      robot.encoderDrive(0.2,-1140,1140,1140,-1140);
-      robot.encoderDrive(0.2,130,130,130,130);
+      robot.encoderDrive(0.2, -1140, 1140, 1140, -1140);
+      robot.encoderDrive(0.2, 130, 130, 130, 130);
       // sleep(1000);
       // sleep(600);
       robot.stopDrive();

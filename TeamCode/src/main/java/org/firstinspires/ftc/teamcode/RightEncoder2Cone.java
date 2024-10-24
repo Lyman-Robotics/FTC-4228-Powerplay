@@ -48,13 +48,14 @@ public class RightEncoder2Cone extends LinearOpMode {
       robot.ClawServo.setPosition(robot.servoClosePos);
       sleep(999);
       robot.encoderDrive(
-          0.26,
-          1780,
-          1770,
-          1770,
-          1780,
-          robot.slidePowerUp,
-          2200.0); // Forward to cone (used to be 2000)
+        0.26,
+        1780,
+        1770,
+        1770,
+        1780,
+        robot.slidePowerUp,
+        2200.0
+      ); // Forward to cone (used to be 2000)
       robot.encoderDrive(0.2, -180, -170, -170, -180); // Back away from cone
       robot.encoderDrive(0.2, -364, 364, 364, -364); // Omni to pole (was 390)
       robot.encoderDrive(0.2, 99, 99, 99, 99); // Forward to pole

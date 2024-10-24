@@ -23,7 +23,7 @@ public class Omnidrive extends LinearOpMode {
     float vertical;
     float horizontal;
     float pivot;
-    double speedScalar=1.0;
+    double speedScalar = 1.0;
     boolean slowMode = false;
     boolean clawClosed = false;
     boolean holdingObject = false;
@@ -46,26 +46,19 @@ public class Omnidrive extends LinearOpMode {
         slowMode = true;
       } else if (gamepad1.left_bumper) {
         slowMode = false;
-      }else{
-            speedScalar = slowMode ? 0.2 : 0.5; // used to be .5 for fast and before that .65
+      } else {
+        speedScalar = slowMode ? 0.2 : 0.5; // used to be .5 for fast and before that .65
       }
-      if (gamepad1.left_trigger > 0)
-      {
+      if (gamepad1.left_trigger > 0) {
         speedScalar = 1;
       }
 
-      if (gamepad1.dpad_left)
-      {
+      if (gamepad1.dpad_left) {
         holdingObject = true;
-      }
-      else if (gamepad1.dpad_right)
-      {
+      } else if (gamepad1.dpad_right) {
         holdingObject = false;
       }
 
-
-
-      
       double FRPower = ((-pivot + (vertical - horizontal)) * speedScalar);
       double BRPower = ((-pivot + vertical + horizontal) * speedScalar);
       double FLPower = ((pivot + vertical + horizontal) * speedScalar);
@@ -96,12 +89,12 @@ public class Omnidrive extends LinearOpMode {
       } else {
         robot.Claw.setPower(0);
       }
-      if (holdingObject)
-      {
+      if (holdingObject) {
         robot.Claw.setPower(-0.4);
       }
       robot.ClawServo.setPosition(
-          clawClosed ? robot.servoClosePos : robot.servoOpenPos);
+        clawClosed ? robot.servoClosePos : robot.servoOpenPos
+      );
 
       //** This is for testing purposes
       // if (gamepad2.x) {
@@ -123,8 +116,9 @@ public class Omnidrive extends LinearOpMode {
       telemetry.addData("Claw Servo Position", robot.ClawServo.getPosition());
       telemetry.addData("Slow Mode", slowMode);
       telemetry.addData(
-          "Slide Touch Sensor",
-          !(robot.SlideTouchSensor.getState()));
+        "Slide Touch Sensor",
+        !(robot.SlideTouchSensor.getState())
+      );
       telemetry.addData("Elapsed Time", robot.timeElapsed.toString());
 
       telemetry.addData("Front left/Right", "%4.2f, %4.2f", FLPower, FRPower);

@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-// import org.firstinspires.ftc.teamcode.common.powerplay.SleeveDetection;
+import org.firstinspires.ftc.teamcode.common.powerplay.SleeveDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -44,7 +44,7 @@ public class RobotClass extends LinearOpMode {
 
   public float omniRightVal = (float) (Math.PI / 2.0);
   public float omniLeftVal = (float) (3.0 * (Math.PI / 2.0));
-  public double slidePowerUp = 0.4; 
+  public double slidePowerUp = 0.4;
   public double slidePowerDown = -slidePowerUp;
   public float servoOpenPos = (float) 0.7477777777;
   public float servoClosePos = (float) 0.338333333;

@@ -51,13 +51,14 @@ public class LeftEncoder2Cone extends LinearOpMode {
       robot.ClawServo.setPosition(robot.servoClosePos);
       sleep(100);
       robot.encoderDrive(
-          0.26,
-          1780,
-          1770,
-          1770,
-          1780,
-          robot.slidePowerUp,
-          2200.0); // Forward to cone (used to be 2000)
+        0.26,
+        1780,
+        1770,
+        1770,
+        1780,
+        robot.slidePowerUp,
+        2200.0
+      ); // Forward to cone (used to be 2000)
       robot.encoderDrive(0.2, -180, -170, -170, -180); // Back away from cone
       robot.encoderDrive(0.2, 400, -400, -400, 400); // Omni to pole (was 420)
       robot.encoderDrive(0.2, 120, 120, 120, 120); // Forward to pole
@@ -66,9 +67,6 @@ public class LeftEncoder2Cone extends LinearOpMode {
       robot.SlideMotor.setPower(0); // Stop lowering
       robot.ClawServo.setPosition(robot.servoOpenPos); // Open servo
       robot.encoderDrive(0.2, -120, -120, -120, -120); // Back from pole
-
-
-
 
       // //+1 Starts Here
       // robot.SlideMotor.setPower(robot.slidePowerDown - 0.1); // Lower onto pole
@@ -88,13 +86,10 @@ public class LeftEncoder2Cone extends LinearOpMode {
       // robot.SlideMotor.setPower(0);
       // robot.encoderDrive(0.3,-1166,-1068,-1128,-1139, robot.slidePowerUp,600);
       // robot.encoderDrive(0.2,645,-640,670,-640);
-      // robot.encoderDrive(0.2,100,100,100,100); 
+      // robot.encoderDrive(0.2,100,100,100,100);
       // robot.ClawServo.setPosition(robot.servoOpenPos);
       // sleep(100);
 
-
-
- 
       if (robot.position.equals("Left")) {
         // ** Good
         robot.stopDrive();
